@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+  <!-- Company Action -->
+  <record id="estate_company_action" model="ir.actions.act_window" >
+    <field name="name">Companies</field >
+    <field name="res_model">res.company</field>
+    <field name="view_mode">tree,form</field >
+  </record >
+
+</odoo>

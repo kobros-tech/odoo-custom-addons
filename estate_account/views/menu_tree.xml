@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<odoo>
+  <!-- Kobros-Tech Menus Definition -->
+
+  <menuitem id="estate_account_menu_root" name="System">
+    <menuitem id="estate_account_first_level_menu" action="estate_account_company_action" />
+  </menuitem>
+  
+</odoo>

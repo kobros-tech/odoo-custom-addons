@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<odoo>
+
+  <!-- Partners Action -->
+  <record id="estate_partner_action" model="ir.actions.act_window" >
+    <field name="name">Partners</field >
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field >
+  </record >
+
+</odoo>
