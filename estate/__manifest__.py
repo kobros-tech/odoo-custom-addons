@@ -6,7 +6,7 @@
     'depends': ['base'],
     'application': "True",
     'license': "LGPL-3",
-    'data': ['security/ir.model.access.csv', 'views/users_view.xml', 'views/partner_view.xml', 'views/offers_view.xml',
-             'views/tag_view.xml', 'views/type_view.xml', 'views/property_list_view.xml', 'views/res_property_views.xml', ],
+    'data': [],
 }
 
+# 'security/ir.model.access.csv', 'views/users_view.xml', 'views/partner_view.xml', 'views/offers_view.xml', 'views/tag_view.xml', 'views/type_view.xml', 'views/property_list_view.xml', 'views/res_property_views.xml', 

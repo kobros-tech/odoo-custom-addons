@@ -4,6 +4,6 @@
 from odoo import models
 
 
-class Company(models.Model):
-     _inherit = 'res.company'
+class AccountChartTemplate(models.Model):
+    _inherit = 'account.chart.template'
      
