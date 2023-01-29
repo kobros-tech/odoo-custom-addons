@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+  <!-- Bank Action -->
+  <record id="estate_account_bank_action" model="ir.actions.act_window" >
+    <field name="name">Banks</field >
+    <field name="res_model">res.bank</field>
+    <field name="view_mode">tree,form</field >
+  </record >
+
+</odoo>

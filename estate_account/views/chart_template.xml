@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+  <!-- Chart of Accounts Action -->
+  <record id="estate_account_chart_action" model="ir.actions.act_window" >
+    <field name="res_model">account.chart.template</field>
+    <field name="view_mode">tree,form</field >
+  </record >
+
+</odoo>

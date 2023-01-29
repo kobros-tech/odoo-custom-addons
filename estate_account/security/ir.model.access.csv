@@ -1,5 +1,9 @@
 "id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
 "access_estate_property","access_estate_property","model_estate_property","base.group_user",1,1,1,1
+"access_res_company","access_res_company","model_res_company","base.group_user",1,1,1,1
+"access_res_bank","access_res_bank","model_res_bank","base.group_user",1,1,1,1
+"access_res_partner_bank","access_res_partner_bank","model_res_partner_bank","base.group_user",1,1,1,1
+"access_res_partner","access_res_partner","model_res_partner","base.group_user",1,1,1,1
+"access_account_account","access_account_account","model_account_account","base.group_user",1,1,1,1
 "access_account_chart_template","access_account_chart_template","model_account_chart_template","base.group_user",1,1,1,1
-"access_account_move","access_account_move","model_account_move","base.group_user",1,1,1,1
 "access_account_journal","access_account_journal","model_account_journal","base.group_user",1,1,1,1
