@@ -3,22 +3,44 @@
 <odoo>
   <!-- Kobros-Tech Menus Definition -->
 
-  <menuitem id="estate_account_menu_root" name="Organization Accounting">
+  <menuitem id="estate_account_menu_root" name="Accounting">
 
-    <menuitem id="estate_account_first_level_menu" name="Companies and Banks Configuration" >
-      <menuitem id="estate_account_company_menu_action" action="estate_account_company_action" />
-      <menuitem id="estate_account_bank_menu_action" action="estate_account_bank_action" />
-      <menuitem id="estate_partner_bank_menu_action" action="estate_partner_bank_action" />
+    <menuitem id="estate_account_first_level_menu" name="Dashboard" >
+      <menuitem id="estate_accounting_dashboard_form_action" action="account.open_account_journal_dashboard_kanban" />
     </menuitem>
 
-    <menuitem id="estate_account_second_level_menu" name="Accounting Configuration" >
-      <menuitem id="estate_account_account_menu_action" action="estate_account_account_action" />
-      <menuitem id="estate_account_chart_menu_action" action="estate_account_chart_action" />
-      <menuitem id="estate_account_journal_menu_action" action="estate_account_journal_action" />
+    <menuitem id="estate_account_second_level_menu" name="Customers" >
+      <menuitem id="estate_action_move_out_invoice_type" action="account.action_move_out_invoice_type" />
+      <menuitem id="estate_action_move_out_refund_type" action="account.action_move_out_refund_type" />
+      <menuitem id="estate_action_account_payments" action="account.action_account_payments" />
+      <menuitem id="estate_product_product_action_sellable" action="account.product_product_action_sellable" />
+      <menuitem id="estate_res_partner_action_customer" action="account.res_partner_action_customer" />
     </menuitem>
 
-    <menuitem id="estate_account_third_level_menu" name="Partners" >
-      <menuitem id="estate_account_partner_menu_action" action="estate_account_partner_action" />
+    <menuitem id="estate_account_third_level_menu" name="Vendors" >
+      <menuitem id="estate_action_move_in_invoice_type" action="account.action_move_in_invoice_type" />
+      <menuitem id="estate_action_move_in_refund_type" action="account.action_move_in_refund_type" />
+      <menuitem id="estate_action_account_payments_payable" action="account.action_account_payments_payable" />
+      <menuitem id="estate_product_product_action_purchasable" action="account.product_product_action_purchasable" />
+      <menuitem id="estate_res_partner_action_supplier" action="account.res_partner_action_supplier" />
+    </menuitem>
+
+    <menuitem id="estate_account_fourth_level_menu" name="Accounting" >
+      <menuitem id="menu_accounting_journals" name="Journals" >
+        <menuitem id="estate_action_move_journal_line" action="account.action_move_journal_line" />
+        <menuitem id="estate_action_move_line_select" action="account.action_account_moves_all" />
+      </menuitem>
+    </menuitem>
+
+    <menuitem id="estate_account_fifth_level_menu" name="Configuration" >
+      <menuitem id="estate_action_account_config" action="account.action_account_config" />
+      <menuitem id="menu_accounting_invoicing" name="Invoicing" >
+	<menuitem id="estate_action_payment_term_form" action="account.action_payment_term_form" />
+      </menuitem>
+      <menuitem id="estate_view_partner_bank_form" action="base.action_res_bank_form" />
+      <menuitem id="estate_action_res_partner_bank_account_form" action="base.action_res_partner_bank_account_form" />
+      <menuitem id="estate_action_res_company_form" action="base.action_res_company_form" />
+      
     </menuitem>
 
   </menuitem>  

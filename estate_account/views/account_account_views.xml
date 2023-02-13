@@ -3,6 +3,7 @@
 <odoo>
   <!-- Account Action -->
   <record id="estate_account_account_action" model="ir.actions.act_window" >
+    <field name="name">Account</field >
     <field name="res_model">account.account</field>
     <field name="view_mode">tree,form</field >
   </record >

@@ -3,11 +3,14 @@
 # Test for archiving files into odoo15@probook
 {
     'name': "Estate Account",
-    'depends': ["estate", "account_edi", "account"],
+    'depends': ["base", "account"],
     'application': "True",
     'license': "LGPL-3",
-    'data': ['security/ir.model.access.csv', 'views/partner_view.xml', 'views/account_account_views.xml', \
-        'views/chart_template.xml', 'views/bank_view.xml', 'views/company_view.xml', \
-        'views/res_partner_views.xml', 'views/account_journal_views.xml',  \
-        'views/menu_tree.xml' ],
+    'data': ['security/ir.model.access.csv', 'views/menu_tree.xml'],
 }
+
+ # account_edi  
+
+ # 'views/account_account_views.xml', \
+ #       'views/chart_template.xml', 'views/account_journal_views.xml', \
+ #       'views/account_journal_dashboard_view.xml', 
