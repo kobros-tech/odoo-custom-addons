@@ -34,8 +34,9 @@
 
     <menuitem id="estate_account_fifth_level_menu" name="Configuration" >
       <menuitem id="estate_action_account_config" action="account.action_account_config" />
+      <menuitem id="estate_action_chart_of_accounts" action="account.action_account_form" />
       <menuitem id="menu_accounting_invoicing" name="Invoicing" >
-	<menuitem id="estate_action_payment_term_form" action="account.action_payment_term_form" />
+	      <menuitem id="estate_action_payment_term_form" action="account.action_payment_term_form" />
       </menuitem>
       <menuitem id="estate_view_partner_bank_form" action="base.action_res_bank_form" />
       <menuitem id="estate_action_res_partner_bank_account_form" action="base.action_res_partner_bank_account_form" />
