@@ -115,7 +115,7 @@ class RealEstateProperty(models.Model):
     @api.depends("offer_ids.price")
     def _compute_min_offer(self):
         
-        # Listing all values for offer field and returning the minimum one                                                                           
+        # Listing all values for offer field and returning the minimum one      
         for record in self:
             
             # Return None if there is no any offer
