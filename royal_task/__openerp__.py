@@ -1,0 +1,15 @@
+# manifest file consists of a dictionary which must include
+# two necessary fields (name field, depends field).
+# related to royal-consultants tutorial tasks
+
+{
+    'name': "Royal Task 1",
+    'description': "Inherit from Pruchase model and modify it",
+    'author': "Mohamed Alkobrosli, Supervision: Mahmoud Salama",
+    'depends': ["purchase"],
+    'application': "True",
+    'license': "LGPL-3",
+    
+}
+
+

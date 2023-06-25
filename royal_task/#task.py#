@@ -1,0 +1,27 @@
+# -*- coding: utf-8 -*-
+from openerp import models, fields, api
+
+class PurchaseOrder_Task(models.Model):
+    _inherit = "purchase.order"
+
+    READONLY_STATES = {
+        'purchase': [('readonly', True)],
+        'done': [('readonly', True)],
+        'cancel': [('readonly', True)],
+    }
+    
+    partner_id = fields.Many2one('res.partner', string='Vendor', required=True, states=READONLY_STATES,
+                                 change_default=True, tracking=True, domain="[('supplier_rank', '=', True)]",
+                                 help="You can find a vendor by its Name, TIN, Email or Internal Reference.")
+
+    dest_address_id = fields.Many2one('res.partner', domain="[('supplier_rank', '=', True)]",
+                                      string='Dropship Address', states=READONLY_STATES,
+                                      help="Put an address if you want to deliver directly from the vendor to the customer. "
+                                      "Otherwise, keep empty to deliver to your own company.")
+
+    fiscal_position_id = fields.Many2one('account.fiscal.position', string='Fiscal Position',
+                                         domain="[('supplier_rank', '=', True)]")
+
+    payment_term_id = fields.Many2one('account.payment.term', 'Payment Terms', domain="[('supplier_rank', '=', True)]")
+
+
