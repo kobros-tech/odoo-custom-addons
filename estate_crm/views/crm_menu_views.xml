@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-
-    <!-- LEADS (MAIN USER MENU) -->             
-    <menuitem
-        id="crm_menu_root"
-        name="Foo" />
-        
-</odoo>

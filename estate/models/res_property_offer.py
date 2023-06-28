@@ -1,87 +1,93 @@
 from odoo import fields, models, api
 from odoo.tools.float_utils import float_compare
-from odoo.exceptions import ValidationError, UserError
+from odoo.exceptions import UserError
+
 from dateutil.relativedelta import relativedelta
-import datetime
+
 
 class EstatePropertyOffer(models.Model):
-    _name  = "estate.property.offer"
+
+    # ---------------------------------------- Private Attributes ---------------------------------
+
+    _name = "estate.property.offer"
     _description = "The offers related to each property"
     _order = "price desc"
-    
-    price = fields.Float(default=0.01, string="price")
-    status = fields.Selection(selection=[('accepted', 'Accepted'), ('refused', 'Refused')], copy=False)
-    partner_id = fields.Many2one("res.partner", required=True)
-    property_id = fields.Many2one("estate.property", required=True)
-    validity = fields.Integer(default=7, string="Validity (days)")
-    date_deadline = fields.Date(compute="_compute_deadline", inverse="_inverse_validity", string="Deadline")
-    property_type_id = fields.Many2one(related="property_id.property_type_id", store=True)
-    
     _sql_constraints = [('check_price', 'CHECK (price > 0)', 'The offer price must be strictly positive'), ]
 
+    # --------------------------------------- Fields Declaration ----------------------------------
+
+    # Basic
+    price = fields.Float(string="price", required=True)      # Need to be required, default value not needed
+    validity = fields.Integer(string="Validity (days)", default=7)  # String attribute is better at first
+
+    # Special
+    state = fields.Selection(
+        string="Status",
+        selection=[
+            ('accepted', 'Accepted'), ('refused', 'Refused'),
+        ],
+        copy=False,
+        default=False
+    )     # Need adjustment
+
+    # Relational
+    partner_id = fields.Many2one("res.partner", string="Partner", required=True)
+    property_id = fields.Many2one("estate.property", string="Property", required=True)
+    property_type_id = fields.Many2one(
+        "estate.property.type", related="property_id.property_type_id",
+        string="Property Type", store=True
+    )  # Need the firstly related attribute
+
+    # Computed
+    date_deadline = fields.Date(compute="_compute_deadline", inverse="_inverse_deadline", string="Deadline")
+
+    # ---------------------------------------- Compute methods ------------------------------------
     
-    @api.depends("validity", "create_date")
+    @api.depends("validity", "create_date")     # Change create_date variable adjust days argument
     def _compute_deadline(self):
         for record in self:
-            if record.validity:
-                create_date = fields.Date.today()
-                record.date_deadline = create_date + relativedelta(days=+record.validity)
+            if record.create_date:
+                date = record.create_date.date()
+            else:
+                date = fields.Date.today()
+            record.date_deadline = date + relativedelta(days=record.validity)
     
-    def _inverse_validity(self):
+    def _inverse_deadline(self):        # Datetime conversion is not needed
         for record in self:
-            create_date = fields.Date.today()
-            date1 = fields.Datetime.to_datetime(create_date)
-            date2 = fields.Datetime.to_datetime(record.date_deadline)
-            record.validity = (date2 - date1).days
+            if record.create_date:
+                date = record.create_date.date()
+            else:
+                date = fields.Date.today()
+            record.validity = (record.date_deadline - date).days
 
+    # ------------------------------------------ CRUD Methods -------------------------------------
 
-    # It is ultimately important that if a partner accepts an offer no any other partner can accept it again!
-    # Also no need to accept sold or canceld offers
-    @api.depends("property_id.offer_ids.status", "property_id")        
-    def action_offer_accept(self):
-        for record in self:
-            for rec in record.mapped("property_id.offer_ids.status"):
-                if rec == "accepted":
-                    return False
-
-            if record.property_id.state == "sold" or record.property_id.state == "canceled":
-                return False
-
-            record.status = "accepted"
-            record.property_id.apply_offer_details(record.price, record.partner_id)
-        return True
-
-
-    # Watch out that selling price is not less than 50% off expected price
-    # No new offers should be less than previous ones
-    @api.constrains("price")
-    def	_check_selling_price(self):
-        for record in self:
-            if float_compare(record.property_id.expected_price, 2 * record.price, precision_rounding=0.00001) == 1:
-                raise ValidationError("The selling price should not be less than half of the expected price #offer")
-
-            if record.property_id.min_offer:
-                if float_compare( record.property_id.min_offer, record.price, precision_rounding=0.00001) == 1:
-                    raise UserError("Offers that are less than other ones are not allowed!")
-    
-
-    # Check if the partner has previously accepted the offer otherwise refuse, no need to check records in other views!
-    def action_offer_refuse(self):
-        if self.status == "accepted":
-            return False
-        self.status = "refused"
-        return True
-
-
-
-    
-    # Once an offer is accepted apply these updates to estate property model       
     @api.model
-    def create(self, vals_list):
+    def create(self, vals):
+        if vals.get("property_id") and vals.get("price"):
+            prop = self.env["estate.property"].browse(vals["property_id"])
+            # We check if the offer is higher than the existing offers
+            if prop.offer_ids:
+                max_offer = max(prop.mapped("offer_ids.price"))
+                if float_compare(vals["price"], max_offer, precision_rounding=0.01) <= 0:
+                    raise UserError("The offer must be higher than %.2f" % max_offer)
+            prop.state = "offer_received"
+        return super().create(vals)
 
-        
-        self.env['estate.property'].browse([vals_list['property_id']]).write({'state': "offer received"})
-        return super(EstatePropertyOffer, self).create(vals_list)
+    # ---------------------------------------- Action Methods -------------------------------------
 
+    """ It is ultimately important that if a partner accepts an offer no any other partner can accept it again! """
+    def action_offer_accept(self):
+        if "accepted" in self.mapped("property_id.offer_ids.state"):
+            raise UserError("An offer has already been accepted.")
+        self.write({"state": "accepted"})
+        return self.mapped("property_id").write(
+            {
+                "state": "offer_accepted",
+                "selling_price": self.price,
+                "buyer_id": self.partner_id.id,
+            }
+        )
 
-    
+    def action_offer_refuse(self):
+        return self.write({"state": "refused", })

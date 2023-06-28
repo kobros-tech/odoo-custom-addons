@@ -1,69 +1,66 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-  <!-- Property Type Action -->
-  <record id="estate_property_type_action" model="ir.actions.act_window">
-    <field name="name">Property Types</field>
-    <field name="res_model">estate.property.type</field>
-    <field name="view_mode">tree,form</field>
-  </record>
+    <!-- Customizing Property Type Form View -->
+    <record id="estate_property_type_view_form" model="ir.ui.view">
+        <field name="name">estate.property.type.form</field>
+        <field name="model">estate.property.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button type="action" name="%(estate.estate_property_offer_action)d" class="oe_stat_button" icon="fa-money">
+                            <field name="total_offers" widget="statinfo" string="Offers"/>
+                        </button>
+                        <!-- This is another solution using a method call -->
+                        <!-- <button name="action_view_offers" type="object" class="oe_stat_button" icon="fa-money">
+                            <field name="offer_count" widget="statinfo" string="Offers"/>
+                        </button> -->
+                    </div>
+                    <!-- Visualize a tree of all common property views -->
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <notebook>
+                        <page string="Properties">
+                            <field name="property_ids" readonly="1">
+                                <tree>
+                                    <field name="name" />
+                                    <field name="expected_price" />
+                                    <field name="state" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-  <!-- Property All Offers Action -->
-  <record id="estate_property_offers_action" model="ir.actions.act_window">
-    <field name="name">Property Offers</field>
-    <field name="res_model">estate.property.offer</field>
-    <field name="view_mode">tree</field>
-    <field name="domain">[('property_type_id', '=', active_id)]</field>
-  </record>   
+    <!-- Customizing Property Type List View -->
+    <record id="property_type_view_tree" model="ir.ui.view">
+        <field name="name">estate.property.type.tree</field>
+        <field name="model">estate.property.type</field>
+        <field name="arch" type="xml">
+            <tree string="Property Types">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
 
-  <!-- Customizing Property Type List View -->
-  <record id="property_type_view_tree" model="ir.ui.view">
-    <field name="name">estate.property.type.tree</field>
-    <field name="model">estate.property.type</field>
-    <field name="arch" type="xml">
-      <tree string="Property Types">
-	<field name="name"/>
-	<field name="total_offers"/>
-      </tree>
-    </field>
-  </record>
-
-  <!-- Customizing Property Type Form View -->
-  <record id="estate_property_type_view_form" model="ir.ui.view">
-    <field name="name">estate.property.type.form</field>
-    <field name="model">estate.property.type</field>
-    <field name="arch" type="xml">
-      <form string="Property Types Form">
-        <sheet>
-	  <div class="oe_title">
-	    <group>
-	      <h1 class="mb32">
-		<field name="name" class="mb16"/>
-              </h1>
-	      <button type="action" name="%(estate.estate_property_offers_action)d" string="All Offers" icon="fa-money"/>
-	    </group>
-          </div>
-	  
-	  <!-- Visualize a tree of all common property views -->
-	  <div>
-	    <notebook>
-	      <page string="Properties">
-		<group>
-		  <field name="property_ids">
-		    <tree widget="statusbar">
-		      <field name="sequence" widget="handle"/>
-		      <field name="name" />
-		      <field name="expected_price" />
-		      <field name="state" />
-		    </tree>
-		  </field>
-		</group>
-	      </page>
-	    </notebook>
-	  </div>
-	</sheet>
-      </form>
-    </field>
-  </record>
+    <!-- Property Type Action -->
+    <record id="estate_property_type_action" model="ir.actions.act_window">
+        <field name="name">Property Types</field>
+        <field name="res_model">estate.property.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a property type
+            </p>
+        </field>
+    </record>
 
 </odoo>
