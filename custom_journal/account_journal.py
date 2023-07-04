@@ -16,12 +16,18 @@ class AccountJournal(models.Model):
 
     # ----------------------------------- Constrains and Onchanges --------------------------------
 
-    @api.onchange("cash_in")
+    @api.onchange("cash_in", "type")
     def _onchange_cash_in(self):
-        if self.cash_in:
-            self.cash_out = False
-
-    @api.onchange("cash_out")
-    def _onchange_cash_out(self):
-        if self.cash_out:
+        if "cash" in self.mapped("type"):
+            if self.cash_in == True:
+                self.cash_out = False
+        else:
             self.cash_in = False
+
+    @api.onchange("cash_out", "type")
+    def _onchange_cash_out(self):
+        if "cash" in self.mapped("type"):
+            if self.cash_out == True:
+                self.cash_in = False
+        else:
+            self.cash_out = False

@@ -7,7 +7,7 @@
     'website': 'https://royalconsultants.net',
     'license': 'OPL-1',
     'author': 'RoyalConsultants',
-    'summary': 'Add Approval cycle for invoices & refuse reason',
+    'summary': 'cash_in and cash_out fields are bound to type only when cash is selected',
     'depends': [
         'account',
     ],
