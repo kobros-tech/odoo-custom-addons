@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
+from odoo.exceptions import UserError
 
 class res_partner(models.Model):
 
@@ -15,9 +16,11 @@ class res_partner(models.Model):
 
     # ---------------------------------------- Default Methods ------------------------------------
 
+    """
     @api.model
     def _commercial_fields(self):
         return super(res_partner, self)._commercial_fields()
+    """
 
     # --------------------------------------- Fields Declaration ----------------------------------
 
@@ -39,6 +42,19 @@ class res_partner(models.Model):
             ("draft", "Draft"),
             ("confirmed", "Confirmed"),
         ],
-        string="Status",
         default="draft",
+        string="Status",
     )
+
+    # ---------------------------------------- Action Methods -------------------------------------
+
+    def action_confirm(self):
+        for rec in self:
+            if not rec.purchase_partner_type or not rec.purchase_reg_no or not rec.purchase_register:
+                raise UserError(
+                    """
+                    Vendor Tax ID and Commercial Register
+                     and Commercial Registration Number must be set before confirmation!
+                    """
+                    )
+        return self.write({"state": "confirmed"})
