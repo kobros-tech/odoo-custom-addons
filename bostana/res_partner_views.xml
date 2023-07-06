@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="res_partner_view_purchase_buttons" model="ir.ui.view">
+        <field name="name">res.partner.view.purchase.buttons</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="purchase.res_partner_view_purchase_buttons"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form//div" position="before">
+                <field name="state" widget="statusbar" statusbar_visible="draft,confirmed"/>
+            </xpath>
+            <field name="vat" position="after">
+                <field name="purchase_partner_type"/>
+                <field name="purchase_reg_no" attrs="{'invisible': [('purchase_partner_type', '!=', 'vendor')]}"/>
+                <field name="purchase_register" attrs="{'invisible': [('purchase_partner_type', '!=', 'vendor')]}"/>
+            </field>
+        </field>
+    </record>
+</odoo>
