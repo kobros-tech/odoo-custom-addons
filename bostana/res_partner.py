@@ -7,7 +7,9 @@ class res_partner(models.Model):
 
     # ---------------------------------------- Private Attributes ---------------------------------
 
-    _inherit = "res.partner"
+    _inherit = [
+        "res.partner",
+    ]
     _sql_constraints = [
         ("purchase_reg_no_uq", "UNIQUE (purchase_reg_no)", "Commercial Registration Number must be unique"),
         ("purchase_register_uq", "UNIQUE (purchase_register)", "Commercial Register must be unique"),
@@ -16,11 +18,9 @@ class res_partner(models.Model):
 
     # ---------------------------------------- Default Methods ------------------------------------
 
-    """
     @api.model
     def _commercial_fields(self):
         return super(res_partner, self)._commercial_fields()
-    """
 
     # --------------------------------------- Fields Declaration ----------------------------------
 
