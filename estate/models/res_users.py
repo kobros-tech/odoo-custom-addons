@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-                                                                                                                               
-# Defining the Real Estate Property Users Model                                                                                                        
+# -*- coding: utf-8 -*-
 
 from odoo import fields, models
 
 
-class Users(models.Model):
+class ResUsers(models.Model):
 
     # ---------------------------------------- Private Attributes ---------------------------------
 
@@ -13,9 +12,7 @@ class Users(models.Model):
     # --------------------------------------- Fields Declaration ----------------------------------
 
     # Relational
-    """ This domain gives the opportunity to mention the evaluated and non-evaluated domains """
+    # This domain gives the opportunity to mention the evaluated and non-evaluated domains
     property_ids = fields.One2many(
-        "estate.property", "user_id",
-        string="Properties",
-        domain=[("state", "in", ["new", "offer_received"])]
+        "estate.property", "user_id", string="Properties", domain=[("state", "in", ["new", "offer_received"])]
     )

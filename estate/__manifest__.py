@@ -1,22 +1,23 @@
-# manifest file consists of a dictionary which must include 
-# two necessary fields (name field, depends field).
+# -*- coding: utf-8 -*-
+# More info at https://www.odoo.com/documentation/master/reference/module.html
 
 {
-    'name': "Real Estate",
-    'depends': ['base', 'web', ],
-    'application': "True",
-    'license': "LGPL-3",
-    'data': [
-        'security/ir.model.access.csv',
-
-        'views/partner_view.xml',
-        'views/offers_view.xml',
-        'views/tag_view.xml',
-        'views/type_view.xml',
-        'views/property_list_view.xml',
-        'views/users_view.xml',
-    	'views/res_property_views.xml',
+    "name": "Real Estate",
+    "depends": [
+        "base",
+        "web",
     ],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/estate_property_offer_views.xml",
+        "views/estate_property_tag_views.xml",
+        "views/estate_property_type_views.xml",
+        "views/estate_property_views.xml",
+        "views/res_users_views.xml",
+        "views/estate_menus.xml",
+        "report/estate_property_templates.xml",
+        "report/estate_property_reports.xml",
+    ],
+    "application": True,
+    "license": "LGPL-3",
 }
-
-

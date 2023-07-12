@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+    <record id="view_users_form" model="ir.ui.view">
+        <field name="name">res.users.form.inherit.estate</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page name="estate_properties" string="Real Estate Properties">
+                    <field name="property_ids"/>
+                </page>
+            </notebook>
+        </field>
+    </record>
+    -->
+    <!-- Inherit res.users models and override some fields -->
+    <record id="view_users_simple_form" model="ir.ui.view">
+        <field name="name">res.users.form.inherit.estate</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_simple_form"/>
+        <field name="arch" type="xml">
+            <!-- find group phone_numbers and replace the notebook with it -->
+            <xpath expr="//group" position="after">
+                <sheet>
+                    <!-- Visualize a tree of all common property views -->
+                    <div>
+                        <notebook >
+                            <page string="Access Rights">
+                            </page>
+                            <page string="Preferences">
+                            </page>
+                            <page string="Real Estate Properties">
+                                <group>
+                                    <field name="property_ids" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </div>
+                </sheet>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="estate_property_users_action" model="ir.actions.act_window">
+        <field name="name">Users</field>
+        <field name="res_model">res.users</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'from_my_profile': True}</field>
+        <field name="view_id" ref="base.view_users_tree"/>
+    </record>
+</odoo>
