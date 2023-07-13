@@ -3,13 +3,12 @@
 from odoo import models, fields, api
 from odoo.exceptions import UserError
 
-class res_partner(models.Model):
+
+class Partner(models.Model):
 
     # ---------------------------------------- Private Attributes ---------------------------------
 
-    _inherit = [
-        "res.partner",
-    ]
+    _inherit = "res.partner"
     _sql_constraints = [
         ("purchase_reg_no_uq", "UNIQUE (purchase_reg_no)", "Commercial Registration Number must be unique"),
         ("purchase_register_uq", "UNIQUE (purchase_register)", "Commercial Register must be unique"),
@@ -30,8 +29,7 @@ class res_partner(models.Model):
             ("vendor", "Vendor"),
             ("customer", "Customer"),
         ],
-        required=True,
-        default="vendor",
+        # required=True,
     )
     purchase_reg_no = fields.Char("Commercial Registration No")
     purchase_register = fields.Char("Commercial Register")
@@ -51,10 +49,11 @@ class res_partner(models.Model):
     def action_confirm(self):
         for rec in self:
             if not rec.purchase_partner_type or not rec.purchase_reg_no or not rec.purchase_register:
+
                 raise UserError(
                     """
                     Vendor Tax ID and Commercial Register
-                     and Commercial Registration Number must be set before confirmation!
+                    and Commercial Registration Number must be set before confirmation!
                     """
-                    )
+                )
         return self.write({"state": "confirmed"})

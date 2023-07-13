@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <odoo>
-    <record id="res_partner_view_purchase_buttons" model="ir.ui.view">
-        <field name="name">res.partner.view.purchase.buttons</field>
+
+    <record id="bostana_vendor_form" model="ir.ui.view">
+        <field name="name">res.partner.view.purchase.buttons.inherit.bostana</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="purchase.res_partner_view_purchase_buttons"/>
         <field name="arch" type="xml">
             <xpath expr="//form//sheet" position="before">
-                <header attrs="{'invisible': [('purchase_partner_type', '!=', 'vendor')]}">
+                <field name="supplier_rank" invisible="1"/>
+                <header attrs="{'invisible': ['|', ('purchase_partner_type', '=', 'customer'), '!', ('supplier_rank', '&gt;=', 1)]}">
                     <button name="action_confirm" type="object" string="Confirm" states="draft"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,confirmed"/>
                 </header>
             </xpath>
             <field name="vat" position="after">
-                <field name="purchase_partner_type"/>
-                <field name="purchase_reg_no" attrs="{'invisible': [('purchase_partner_type', '!=', 'vendor')]}"/>
-                <field name="purchase_register" attrs="{'invisible': [('purchase_partner_type', '!=', 'vendor')]}"/>
+                <field name="purchase_partner_type" attrs="{'invisible': ['!', ('supplier_rank', '&gt;=', 1)]}"/>
+                <field name="purchase_reg_no" attrs="{'invisible': ['|', ('purchase_partner_type', '=', 'customer'), '!', ('supplier_rank', '&gt;=', 1)]}"/>
+                <field name="purchase_register" attrs="{'invisible': ['|', ('purchase_partner_type', '=', 'customer'), '!', ('supplier_rank', '&gt;=', 1)]}"/>
             </field>
         </field>
     </record>
+
 </odoo>
