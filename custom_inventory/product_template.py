@@ -5,10 +5,14 @@ from odoo import models, fields, api
 
 class ProductTemplate(models.Model):
 
+    # ---------------------------------------- Private Attributes ---------------------------------
+
     _inherit = "product.template"
 
-    default_code = fields.Char(
-        'Internal Very New Reference', compute='_compute_default_new_code')
+    # --------------------------------------- Fields Declaration ----------------------------------
+
+    # Computed
+    default_code = fields.Char(compute='_compute_default_new_code')
 
     # ----------------------------------- Constrains and Onchanges --------------------------------
 
