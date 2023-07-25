@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        <record id="maintenance_equipment_form_view_inherit" model="ir.ui.view">
+            <field name="name">maintenance.equipment.form.inherit</field>
+            <field name="model">maintenance.equipment</field>
+            <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
+            <field name="arch" type="xml">
+                <!--
+                <xpath expr="//field[@name='employee_id']" position="after">
+                    <field name="code_of_machine"/>
+                </xpath>
+                -->
+                <xpath expr="//field[@name='serial_no']" position="after">
+                    <field name="equipment_function"/>
+                    <field name="s_n"/>
+                    <field name="has_catalog" widget="radio"/>
+                    <field name="company_name"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="before">
+                    <field name="country_of_origin_id"/>
+                </xpath>
+                <xpath expr="//field[@name='effective_date']" position="after">
+                    <field name="manufacturing_year"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

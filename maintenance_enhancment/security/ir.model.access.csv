@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access.spare.part,access_spare_part,maintenance_enhancment.model_spare_part,base.group_user,1,1,1,1
+access.cancel.reason,access_cancel_reason,maintenance_enhancment.model_cancel_reason,base.group_user,1,1,1,1

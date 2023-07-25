@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data noupdate="1">
+
+    <record id="stage_0_1" model="maintenance.stage">
+        <field name="name">Submitted</field>
+        <field name="is_submitted" eval="True" />
+        <field name="sequence" eval="1" />
+        <field name="fold" eval="False" />
+    </record>
+
+    <record id="stage_1_1" model="maintenance.stage">
+        <field name="name">In Test</field>
+        <field name="is_test" eval="True" />
+        <field name="sequence" eval="2" />
+        <field name="fold" eval="False" />
+    </record>
+
+    <record id="stage_5" model="maintenance.stage">
+        <field name="name">Cancel</field>
+        <field name="is_cancel" eval="True" />
+        <field name="sequence" eval="5" />
+        <field name="fold" eval="False" />
+    </record>
+
+</data>
+</odoo>

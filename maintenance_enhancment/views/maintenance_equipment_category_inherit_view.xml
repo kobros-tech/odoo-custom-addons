@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        <record id="maintenance_equipment_category_inherit_form_view" model="ir.ui.view">
+            <field name="name">maintenance.equipment.category.inherit.form</field>
+            <field name="model">maintenance.equipment.category</field>
+            <field name="inherit_id" ref="maintenance.hr_equipment_category_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='technician_user_id']" position="after">
+                    <field name="printout_type" widget="radio"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

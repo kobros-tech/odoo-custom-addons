@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+
+        <record id="account_maintenance_running_report_1" model="ir.actions.report">
+            <field name="name">Daily Running Report </field>
+            <field name="model">printout.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">('Second shift reports for the operation of the cooling plant- ')</field>
+            <field name="report_name">maintenance_printouts.report_daily_running_template_1</field>
+            <field name="report_file">maintenance_printouts.report_daily_running_template_1</field>
+           <field name="paperformat_id" ref="maintenance_printouts.portrait_paperformat"/>
+        </record>
+
+
+        <template id="report_daily_running_document_1">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    
+                    <div style="position: absolute; top: 10px; right: 30px;">
+                        <img src="/maintenance_printouts/static/description/Photo.png" alt="Photo"
+                             width="300" height="100"/>
+                    </div>
+                    <p style="position: relative; top: 80px; font-size: 20px;">Bostana For Food Industries</p>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div style="width:60%; position: relative; left: 185px; top: 55px;">
+                        <h1 style="text-align:center; background-color: yellow;">Daily Running Report</h1>
+                    </div>
+                    <br/>
+                    <h5 style="font-weight: bold;">Date: <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d')"/> </h5>
+                    <table style="border:1px solid black; border-collapse: collapse; width: 100%;">
+                        <thead>
+                            <tr>
+                                <th colspan="2" style="border:1px solid black; vertical-align: middle; border-collapse: collapse;width: 70px; height: 50px;">Time Compressor</th>
+                                <th style="border:1px solid black; vertical-align: middle; border-collapse: collapse; height: 50px;">8:00am</th>
+                                <th style="border:1px solid black; vertical-align: middle; border-collapse: collapse; height: 50px;">10:00am</th>
+                                <th style="border:1px solid black; vertical-align: middle; border-collapse: collapse; height: 50px;">12:00pm</th>
+                                <th style="border:1px solid black; vertical-align: middle; border-collapse: collapse; height: 50px;">2:00pm</th>
+                                <th style="border:1px solid black; vertical-align: middle; border-collapse: collapse; height: 50px;">4:00pm</th>
+                                <th style="border:1px solid black; vertical-align: middle; border-collapse: collapse; height: 50px;">6:00pm</th>
+                                <th style="border:1px solid black; vertical-align: middle; border-collapse: collapse; width: 70px;">Running hours</th>
+                                <th style="border:1px solid black; vertical-align: middle; border-collapse: collapse; width: 200px;">Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td rowspan="9" style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;"><div style="transform: rotate(-90deg);-webkit-transform: rotate(-90deg);-ms-transform: rotate(-90deg);font-family:bold">Compressor.no.1</div></td>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Suction pressure (Bar)</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td rowspan="9" style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td rowspan="49" style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Discharge pressure(Bar)</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Oil pressure(Bar)</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Suction tempreature(C)</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Suction superhrat temp.</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">oil tempreature ©</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Capacity ( Loading )</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Ampere(A)</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Oil level</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                            <tr>
+                                <td rowspan="9" style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;"><div style="transform: rotate(-90deg);-webkit-transform: rotate(-90deg);-ms-transform: rotate(-90deg);font-family:bold">Compressor no.2</div></td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td rowspan="9" style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Discharge pressure(Bar)</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Oil pressure(Bar)</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Suction tempreature( C)</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Suction superhrat temp.</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">oil tempreature ©</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Capacity ( Loading )</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Ampere(A)</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Oil level</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                            <tr>
+                                <td rowspan="9" style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;"><div style="transform: rotate(-90deg);-webkit-transform: rotate(-90deg);-ms-transform: rotate(-90deg);font-family:bold">Compressor no.3</div></td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td rowspan="9" style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Discharge pressure(Bar)</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Oil pressure(Bar)</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Suction tempreature( C)</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Suction superhrat tem.</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">oil tempreature ©</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Capacity ( Loading )</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Ampere(A)</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Oil level</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                            <tr>
+                                <td rowspan="9" style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;"><div style="transform: rotate(-90deg);-webkit-transform: rotate(-90deg);-ms-transform: rotate(-90deg);font-family:bold">Compressor no.4</div></td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td rowspan="9" style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Discharge pressure(Bar)</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                             <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Oil pressure(Bar)</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                             <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Suction tempreature( C)</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                             <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Suction superhrat temp.</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                             <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">oil tempreature ©</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                             <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Capacity ( Loading )</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                             <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Ampere(A)</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                             <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Oil level</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                             <tr>
+                                <td rowspan="9" style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;"><div style="transform: rotate(-90deg);-webkit-transform: rotate(-90deg);-ms-transform: rotate(-90deg);font-family:bold">Compressor no.5</div></td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td rowspan="9" style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                             <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Discharge pressure(Bar)</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                             <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Oil pressure(Bar)</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                             <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Suction tempreature( C)</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                             <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Suction superhrat temp.</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                             <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">oil tempreature ©</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                             <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Capacity ( Loading )</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                             <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Ampere(A)</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                             <tr>
+                                <td style="border:1px solid black; vertical-align: middle; text-align:center; border-collapse: collapse;font-size:12px;height:25px">Oil level</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                             <tr>
+                                <td colspan="2" style="border:1px solid black; vertical-align: middle; border-collapse: collapse;font-size:12px;height:25px">Evaporative condenser</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                             <tr>
+                                <td colspan="2" style="border:1px solid black; vertical-align: middle; border-collapse: collapse;font-size:12px;height:25px">Ammonia pump -10 C</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                             <tr>
+                                <td colspan="2" style="border:1px solid black; vertical-align: middle; border-collapse: collapse;font-size:12px;height:25px">Ammonia pump -27 C</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                             <tr>
+                                <td colspan="2" style="border:1px solid black; vertical-align: middle; border-collapse: collapse;font-size:12px;height:25px">Ammonia pump -40 C</td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                                <td style="border:1px solid black; border-collapse: collapse;"> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br/>
+                    <br/>
+                    <h2 style="font-weight: bold;">Technical Shift</h2>
+                    <h5 style="font-weight: bold; position: absolute; right: 10px;">Head Engineering Management Manager</h5>
+                    <br/>
+                    <br/>
+                    <h6 style="position: absolute; font-weight: bold; right: 200px;">Eng:</h6>
+                    <div t-if="doc.engineering_managers" style="position: absolute; right: 85px;">
+                         <h6 style="font-weight: bold;" t-field="doc.engineering_managers"/>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+
+        <template id="report_daily_running_template_1">
+            <!-- <style>
+                
+                td div 
+                {
+                    transform: rotate(-90deg);-webkit-transform: rotate(-90deg);-ms-transform: rotate(-90deg);
+                }
+                
+            </style> -->
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="maintenance_printouts.report_daily_running_document_1"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

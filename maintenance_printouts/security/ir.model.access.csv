@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access.printout.wizard,access_printout_wizard,maintenance_printouts.model_printout_wizard,base.group_user,1,1,1,1
+access.wizard_print_report,access_wizard_print_report,maintenance_printouts.model_wizard_print_report,base.group_user,1,1,1,1
+
+

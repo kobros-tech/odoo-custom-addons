@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+
+        <record id="account_maintenance_report_x" model="ir.actions.report">
+            <field name="name">Maintenance Report X </field>
+            <field name="model">printout.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"Maintenance - %s" % object.name</field>
+            <field name="report_name">maintenance_printouts.report_maintenance_x</field>
+            <field name="report_file">maintenance_printouts.report_maintenance_x</field>
+           <field name="paperformat_id" ref="maintenance_printouts.portrait_paperformat"/>
+        </record>
+
+        <template id="report_maintenance_x">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    <div class="container">
+
+                        <t t-call="maintenance_printouts.my_own_layout_header"/>
+
+                        <!-- Report Row Content -->
+                        <div >
+                            <p dir="RTL"><strong>أسم الماكينة / المعدة : ....................... المكان : </strong><strong>.................................................. </strong> <strong>رقم الكود : </strong></p>
+                            <p dir="RTL"><strong>تكرار الاعطال نعم/لا</strong></p>
+                            <p dir="RTL"><strong>تحديد مظهر العطل :</strong></p>
+                            <p dir="RTL"><strong>وقت الابلاغ : ............................. </strong></p>
+                            <p dir="RTL"><strong>إستلام الاداره الهندسيه للبلاغ إدارة .............................القائم</strong> <strong>بالتبليغ</strong></p>
+                            <p dir="RTL"><strong>الإســـــــــــــم :.............................</strong><strong> الإســـــــــــــم :............................. </strong></p>
+                            <p dir="RTL"><strong>التوقيع :.............................</strong><strong> التوقيع :............................. </strong></p>
+                            <p dir="RTL"><strong> التاريـــــخ :............................. </strong><strong> التاريـــــخ :............................. </strong></p>
+                            <p dir="RTL"><img src="MaintF3%20-طلب%20إصلاح_files/image001.png" alt="" width="722" height="2" /></p>
+                            <br clear="ALL" />
+                            <p dir="RTL"><strong><u>إبلاغ الإنتاج بإنتهاء أعمال الصيانة</u></strong></p>
+                            <p dir="RTL"><strong>تحديد سبب العطل :</strong></p>
+                            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                            <p dir="RTL"><strong>الأعمال التى تمت :</strong></p>
+
+                            <br/><br/><br/><br/><br/>
+                            <t t-call="maintenance_printouts.my_own_layout_footer"/>
+
+                            <t t-call="maintenance_printouts.my_own_layout_header"/>
+
+                            <div>
+                                <table class="table" dir="rtl" border="1" cellspacing="0" cellpadding="0">
+                                    <tbody >
+                                        <tr>
+                                            <td colspan="2" width="361">
+                                                <p dir="RTL"><strong>وقت بدء أعمال الصيانة :</strong></p>
+                                            </td>
+                                            <td colspan="2" width="357">
+                                                <p dir="RTL"><strong>وقت إنتهاء أعمال الصيانة :</strong></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4" width="717">
+                                                <p dir="RTL"><strong>علماً بأنه لا يوجد أى فقد فى أدوات وعدد الصيانة نتيجة تنفيذ أعمال الصيانة وتم تنفيذ اعمال النظافة والتعقيم للمعدة قبل التسليم واعادة التشغيل وتم التأكد من خلو الموقع من أي أجسام غريبة أو أجزاء مفقودة نتيجة أعمال الصيانة .</strong></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" width="361">
+                                                <p dir="RTL"><strong>مسئول الصيانة :</strong></p>
+                                                <br/>
+                                                <p dir="RTL"><strong>الإســـــــــــــم : </strong></p>
+                                                <br/>
+                                                <p dir="RTL"><strong>التوقيع : </strong></p>
+                                                <br/>
+                                                <p dir="RTL"><strong>التاريـــــخ : </strong></p>
+                                            </td>
+                                            <td colspan="2" width="357">
+                                                <p dir="RTL"><strong> مستلم البلاغ :</strong></p>
+                                                <br/>
+                                                <p dir="RTL"><strong>الإســـــــــــــم : </strong></p>
+                                                <br/>
+                                                <p dir="RTL"><strong>التوقيع : </strong></p>
+                                                <br/>
+                                                <p dir="RTL"><strong>التاريـــــخ : </strong></p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                            <p dir="RTL">- تم استلام المعده /الماكينه بحاله جيدة ونظيفة ويمكن العمل بها دون الاخلال بأعمال الشركة أو تعرض مشغل المعدة لخطورة أو ضرر لسلامة الغذاء أو الاشتراطات الصحية ( مطابق/غير مطابق )</p>
+                            <p dir="RTL">- تم التحقق من حقيبة العدة قبل وبعد الصيانة وعدم فقد شئ من أدوات الصيانه ( مطابق/غير مطابق )</p>
+                            <div>
+                                <table class="table" dir="rtl" border="1" cellspacing="0" cellpadding="0">
+                                    <tbody >
+                                        <tr>
+                                            <td colspan="2" width="250">
+                                                <p dir="RTL">القائم بإستلام المعدة</p>
+                                            </td>
+                                            <td colspan="2" width="250">
+                                                <p dir="RTL">المدير المسؤل</p>
+                                            </td>
+                                            <td colspan="2" width="250">
+                                                <p dir="RTL">مراقب الجودة</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" width="250">
+                                                <p dir="RTL">اﻹسم : </p>
+                                            </td>
+                                            <td colspan="2" width="250">
+                                                <p dir="RTL">اﻹسم : </p>
+                                            </td>
+                                            <td colspan="2" width="250">
+                                                <p dir="RTL">اﻹسم : </p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                        <t t-call="maintenance_printouts.my_own_layout_footer"/>
+
+                    </div> <!-- container -->
+                </div> <!-- page -->
+            </t>
+
+        </template>
+
+        <template id="my_own_layout_header">
+            <!-- Report header content -->
+            <div class="page-header">
+                <div dir="RTL">
+                    <table class="table" border="1" cellspacing="0" cellpadding="0">
+                        <tbody dir="RTL">
+                            <tr>
+                                <td style="text-align:center">
+                                    <h1> بستانا للصناعات الغذائية </h1>
+                                    <img src="/maintenance_printouts/static/description/Photo.png" alt="Photo"
+                                         width="300" height="100"/>
+                                </td>
+                                <td style="text-align:center">
+                                    <h3> إجراء الصيانة <br/> رقم </h3>
+                                    <h5 dir="ltr"> (GB-713-01) </h5>
+                                </td>
+                                <td>
+                                    <h3> رقم وتاريخ الإصدار:(الاول) <br/> <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d ')"/> <br/> رقم وتاريخ التعديل: <br/> <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d ')"/> <br/> رقم النسخه  :  ( 2  ) </h3>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h3>رقم الطلب<br/>لعام<span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d ')"/></h3>
+                    <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%H:%M')"/>
+
+                    <h2 style="text-align:center">طلب إصلاح</h2>
+                </div>
+            </div>
+        </template>
+
+        <template id="my_own_layout_footer">
+            <!-- Report footer content -->
+            <div class="page-footer" dir="RTL">
+                <p>في حالة عدم اإصلاح يتم عمل طلب صيانة آخر و يتم إرفاق الطلبين معا</p>
+                <p dir="LTR">F-713-01-03</p>
+            </div>
+        </template>
+
+    </data>
+
+</odoo>

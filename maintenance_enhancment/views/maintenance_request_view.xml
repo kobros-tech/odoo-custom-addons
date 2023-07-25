@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        <record id="maintenance_request_form_view_inherit" model="ir.ui.view">
+            <field name="name">maintenance.request.form.inherit</field>
+            <field name="model">maintenance.request</field>
+            <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
+            <field name="arch" type="xml">
+                <!-- <xpath expr="//field[@name='request_date']" position="replace">
+                    <field name="request_date"/>
+                </xpath> -->
+                
+                <xpath expr="//div[1]" position="before">
+                        <!-- <widget name="web_ribbon" title="Partially Paid" attrs="{'invisible': [('payment_state', '!=', 'partial')]}"/> -->
+                        <widget name="web_ribbon" title="Cancelled" attrs="{'invisible': [('is_cancelled', '=', False)]}"/>
+                </xpath>
+
+                <xpath expr="//button[@name='archive_equipment_request']" position="before">
+                    <button string="Submit" name="action_submit" type="object" class="oe_highlight"  attrs="{'invisible': [('is_new_request', '!=', True)]}"/>
+                    <button string="Start Repair" name="action_start_repair" type="object" class="oe_highlight"  attrs="{'invisible': ['|',('is_submitted', '!=', True),('require_spare_parts', '=', False)]}"/>
+                    <button string="End Repair" name="action_end_repair" type="object" class="oe_highlight"  attrs="{'invisible': [('is_inprogress', '!=', True)]}"/>
+                    <button string="Done Repair" name="action_done" type="object" class="oe_highlight"  attrs="{'invisible': [('is_test', '!=', True)]}"/>
+                    <button string="Back to Repair" name="action_back_to_repair" type="object" attrs="{'invisible': [('is_test', '!=', True)]}"/>
+                </xpath>
+                <xpath expr="//button[@name='archive_equipment_request']" position="attributes">
+                    <attribute name="name">action_cancel</attribute>
+                    <attribute name="attrs">{'invisible': ['|', '|',('archive', '=', True),('is_cancelled', '=', True), ('done', '=', True)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='stage_id']" position="attributes">
+                    <attribute name="options">{'clickable': False}</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='schedule_date']" position="after">
+                    <field name="is_new_request" invisible="1"/>
+                    <field name="is_submitted" invisible="1"/>
+                    <field name="is_inprogress" invisible="1"/>
+                    <field name="is_test" invisible="1"/>
+                    <field name="is_cancelled" invisible="1"/>
+            
+                    <field name="repair_start" readonly="1" force_save="1"/>
+                    <field name="repair_end" readonly="1" force_save="1"/>
+                </xpath>
+                <xpath expr="//field[@name='maintenance_type']/.." position="inside">
+                    <field name="is_an_issue" attrs="{'invisible': [('is_new_request', '=', True)]}"/>
+                </xpath>
+                
+                
+                <xpath expr="//field[@name='description']" position="attributes">
+                    <attribute name="string">Issue Description</attribute>
+                </xpath>
+                <xpath expr="//field[@name='description']" position="after">
+                    <field name="maintenance_worker_description" attrs="{'required':[('is_an_issue','=',True)], 'invisible': [('is_new_request', '=', True)]}"/>
+                    <field name="require_spare_parts" attrs="{'required':[('is_an_issue','=',True)], 'invisible': [('is_new_request', '=', True)]}"/>
+
+                    <field name="description_repairs" attrs="{'invisible': ['|','|',('is_new_request', '=', True),('is_submitted', '=', True),('is_inprogress', '=', True)]}"/>
+                </xpath>
+                <xpath expr="//sheet" position="inside">
+                    <notebook>
+                        <page string="Spare Parts" attrs="{'invisible': [('require_spare_parts', '!=', 'yes')]}">
+                            <field name="spare_parts_ids" mode="tree">
+                                <tree string="Spare Parts" editable="bottom">
+                                    <field name="spare_part_id" optional="show"/>
+                                    <!-- <field name="planned_quantity" optional="show"/> -->
+                                    <field name="used_quantity" optional="show"/>
+                                    <field name="uom_id" required="1" optional="show"/>
+                                    <field name="product_uom_category_id" invisible="1"/>
+                                    <field name="available_qty" optional="show" widget="badge"
+                                           decoration-success="available_qty == 'in_stock'" decoration-danger="available_qty == 'out_of_stock'"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

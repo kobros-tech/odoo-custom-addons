@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="maintenance_printouts_action" model="ir.actions.act_window">
+            <field name="name">Printouts</field>
+            <field name="res_model">printout.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="maintenance_printouts.view_printout_wizard"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="maintenance_printouts_menu"
+                  name="Printouts"
+                  parent="maintenance.menu_maintenance_title"
+                  action="maintenance_printouts_action"
+                  sequence="25"/>
+    </data>
+</odoo>
