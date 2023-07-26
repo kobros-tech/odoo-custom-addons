@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+
+        <record id="account_maintenance_report_x" model="ir.actions.report">
+            <field name="name">Maintenance Report X </field>
+            <field name="model">printout.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"Maintenance - %s" % object.name</field>
+            <field name="report_name">maintenance_printouts.report_maintenance_x</field>
+            <field name="report_file">maintenance_printouts.report_maintenance_x</field>
+           <field name="paperformat_id" ref="maintenance_printouts.lanscape_paperformat"/>
+        </record>
+
+        <template id="report_maintenance_x">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    <div class="container">
+
+                        <t t-call="maintenance_printouts.my_own_layout_header"/>
+
+                        <!-- Report Row Content -->
+                        <div >
+
+                            <div dir="RTL">
+                                <h2 class="text-center"><strong><u>كارتة معدة</u></strong></h2>
+                                <div dir="rtl">
+                                    <table dir="rtl" width="1200" class="table-bordered table-condensed small">
+
+                                        <colgroup>
+                                            <col style="background-color:rgb(224, 224, 219)"/>
+                                        </colgroup>
+
+                                        <tbody>
+                                            <tr>
+                                                <td width="252" class="active">
+                                                    <p dir="RTL"><strong><span lang="AR-EG">إسم المعدة</span></strong></p>
+                                                </td>
+                                                <td width="800">
+                                                    <p dir="RTL"><strong><span lang="AR-EG"></span></strong></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="252" class="active">
+                                                    <p dir="RTL"><strong><span lang="AR-EG">كود المعدة</span></strong></p>
+                                                </td>
+                                                <td width="740">
+                                                    <p dir="RTL"><strong><span lang="AR-EG"></span></strong></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="252" class="active">
+                                                    <p dir="RTL"><strong><span lang="AR-EG">وظيفة المعدة</span></strong></p>
+                                                </td>
+                                                <td width="740">
+                                                    <p dir="RTL"><strong><span lang="AR-EG"></span></strong></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="252" class="active">
+                                                    <p dir="RTL"><strong><span lang="AR-EG">مكان التشغيل</span></strong></p>
+                                                </td>
+                                                <td width="740">
+                                                    <p dir="RTL"><strong><span lang="AR-EG"></span></strong></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="252" class="active">
+                                                    <p dir="RTL"><strong><span lang="AR-EG">بلد المنشأ</span></strong></p>
+                                                </td>
+                                                <td width="740">
+                                                    <p dir="RTL"><strong><span lang="AR-EG"></span></strong></p>
+                                                </td>
+                                                    </tr>
+                                                    <tr>
+                                                <td width="252" class="active">
+                                                    <p dir="RTL"><strong><span lang="AR-EG">سنة الصنع</span></strong></p>
+                                                </td>
+                                                <td width="740">
+                                                    <p dir="RTL"><strong><span lang="AR-EG"></span></strong></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="252" class="active">
+                                                    <p dir="RTL"><strong><span lang="AR-EG">الطراز / </span></strong><strong><span dir="LTR">S.N</span></strong></p>
+                                                </td>
+                                                <td width="740">
+                                                    <p dir="RTL"><strong><span lang="AR-EG"></span></strong></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="252" class="active">
+                                                    <p dir="RTL"><strong><span lang="AR-EG">تاريخ دخول الخدمة</span></strong></p>
+                                                </td>
+                                                <td width="740">
+                                                    <p dir="RTL"><strong><span lang="AR-EG"></span></strong></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="252" class="active">
+                                                    <p dir="RTL"><strong><span lang="AR-EG">الشركة المنفذة لأعمال التركيب والتشغيل </span></strong></p>
+                                                    <p dir="RTL"><strong><span lang="AR-EG">الشخص المسئول - تليفون</span></strong></p>
+                                                </td>
+                                                <td width="740">
+                                                    <p dir="RTL"><strong><span lang="AR-EG"></span></strong></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="252" class="active">
+                                                    <p dir="RTL"><strong><span lang="AR-EG">سعر شراء المعدة</span></strong></p>
+                                                </td>
+                                                <td width="740">
+                                                    <p dir="RTL"><strong><span lang="AR-EG"></span></strong></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="252" class="active">
+                                                    <p dir="RTL"><strong><span lang="AR-EG">يوجد كتالوج / لا يوجد</span></strong></p>
+                                                </td>
+                                                <td width="740">
+                                                    <p dir="RTL"><strong><span lang="AR-EG"></span></strong></p>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br/><br/>
+                        <t t-call="maintenance_printouts.my_own_layout_footer"/>
+
+                    </div> <!-- container -->
+                </div> <!-- page -->
+            </t>
+        </template>
+
+        <template id="my_own_layout_header">
+            <!-- Report header content -->
+            <div class="page-header">
+                <div >
+                    <h2 dir="RTL"> بستانا للصناعات الغذائية </h2>
+                    <div dir="RTL">
+                        <img src="/maintenance_printouts/static/description/Photo.png" alt="Photo"
+                             width="300" height="100"/>
+                    </div>
+                    <strong><span dir="LTR" t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d ')"/></strong>
+                </div>
+            </div>
+        </template>
+
+        <template id="my_own_layout_footer">
+            <!-- Report footer content -->
+            <div class="page-footer" dir="LTR">
+                <p>F-713-01-06</p>
+            </div>
+        </template>
+
+    </data>
+
+</odoo>
