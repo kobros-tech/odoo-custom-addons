@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+
+        <record id="account_maintenance_report_x" model="ir.actions.report">
+            <field name="name">Maintenance Report X </field>
+            <field name="model">printout.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"Maintenance - %s" % object.name</field>
+            <field name="report_name">maintenance_printouts.report_maintenance_x</field>
+            <field name="report_file">maintenance_printouts.report_maintenance_x</field>
+           <field name="paperformat_id" ref="maintenance_printouts.lanscape_paperformat"/>
+        </record>
+
+        <template id="report_maintenance_x">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    <div class="container">
+
+                        <t t-call="maintenance_printouts.my_own_layout_header"/>
+
+                        <!-- Report Row Content -->
+                        <div >
+
+                            <table class="table">
+                                <t t-set="months" t-value=" ['January', 'February', 'Marche', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']"/>
+                                <t t-set="year" t-value="context_timestamp(datetime.datetime.now()).strftime(' %Y')"/>
+                                <tbody>
+                                    <div class="text-center" style="background-color: #FFEFC1;">
+                                        <h3>Annual maintenance plan <span dir="LTR" t-esc="time.strftime(' %Y')"/></h3>
+                                    </div>
+                                    <tr>
+                                        <th>
+                                            <p>Month</p>
+                                            <p>machine code</p>
+                                        </th>
+                                        <t t-foreach="months" t-as="i">
+                                            <th>
+                                                <p>
+                                                    <t t-out="i"/>
+                                                </p>
+                                            </th>
+                                        </t>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>A.C1</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>A.C2</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>B1</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>B2</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>C1</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>C2</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>C3</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>C4</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>C5</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>NH3P1</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>NH3P2</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>NH3P3</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>NH3P4</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>NH3P5</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>NH3P6</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>EV.Cond1</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>EV.Cond2</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>PHE1</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>PHE2</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>CH.WP1</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>CH.WP2</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>C.R1</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>C.R2</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>C.R3</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>C.R4</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>B.F</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>IQF</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>P.C1</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>P.C2</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>P.C3</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>P.R1</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>P.R2</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>G</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>V.MFC</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>H.B</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>V.SH</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>F.S</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>M.W.M</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>F.C.B</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr><tr>
+                                        <td>
+                                            <p>B.C</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>C.A.B</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>D.SH</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>S.F.C</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>S.C1</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr><tr>
+                                        <td>
+                                            <p>S.F.C1</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>S.WM1</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>F</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>S.C2</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>H.C1</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>H.C2</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>R.A</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Ps.A</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>D.A</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>P.A</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>RT.F</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>E.F</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>D.F</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>S1</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>S2</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>S3</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>S4</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>S5</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>C.B.IQF</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>C.B.FS</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>S.G1</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>S.G2</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>S.L.2</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>O.G.L</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>F.C.S</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>S.1</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>S.2</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>C.S</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>S.M</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>F.C.C.M</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>C.M</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>C.C.M</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>S.C.M1</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>S.C.M2</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>M.D1</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>M.D2</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>W.P</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Dryer 1</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Dryer 2</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Dryer 3</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Dryer 4</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Sanitation</p>
+                                            <p>Machine</p>
+                                            <p>No.1</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Sanitation</p>
+                                            <p>Machine</p>
+                                            <p>No.2</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Sanitation</p>
+                                            <p>Machine</p>
+                                            <p>No.3</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Sanitation</p>
+                                            <p>Gate</p>
+                                            <p>(Door)</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Automatic</p>
+                                            <p>Packaging</p>
+                                            <p>Machine</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Door for</p>
+                                            <p>cloud</p>
+                                            <p>store no.1</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Door for</p>
+                                            <p>cloud</p>
+                                            <p>store no.2</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Door for</p>
+                                            <p>cloud</p>
+                                            <p>store no.3</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Door for</p>
+                                            <p>cloud</p>
+                                            <p>store no.4</p>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                        </div><!-- Report Row Content -->
+
+                    </div><!-- container -->
+                </div><!-- page -->
+            </t>
+        </template>
+
+        <template id="my_own_layout_days_calculator">
+            <!-- Report number of days content -->
+            <td t-foreach="months" t-as="i">
+                <t t-if="i in ['January', 'Marche', 'May', 'July', 'August', 'October', 'December']">
+                    <p>
+                        <span t-foreach="range(31)" t-as="j">
+                            <t t-out="j + 1 "/>
+                        </span>
+                    </p>
+                </t>
+                <t t-elif="i in ['April', 'June', 'September', 'November', ]">
+                    <p>
+                        <span t-foreach="range(30)" t-as="j">
+                            <t t-out="j + 1 "/>
+                        </span>
+                    </p>
+                </t>
+                <t t-else="i = 'February'">
+                    <t t-set="y" t-value="int(year)"/>
+                    <t t-set="Feb_days" t-value="(datetime.datetime(y,3,1) - datetime.datetime(y,2,1)).days"/>
+                    <span t-foreach="range(Feb_days)" t-as="j">
+                        <t t-out="j + 1 "/>
+                    </span>
+                </t>
+            </td>
+        </template>
+
+        <template id="my_own_layout_header">
+            <!-- Report header content -->
+            <div class="page-header">
+                <div >
+                    <h2 dir="RTL"> بستانا للصناعات الغذائية </h2>
+                    <div dir="RTL">
+                        <img src="/maintenance_printouts/static/description/Photo.png" alt="Photo"
+                             width="300" height="100"/>
+                    </div>
+                    <strong><span dir="LTR" t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d ')"/></strong>
+                </div>
+            </div>
+        </template>
+
+    </data>
+
+</odoo>
