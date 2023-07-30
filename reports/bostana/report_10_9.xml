@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+
+        <record id="account_maintenance_report_x" model="ir.actions.report">
+            <field name="name">Maintenance Report X </field>
+            <field name="model">printout.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="print_report_name">"Maintenance - %s" % object.name</field>
+            <field name="report_name">maintenance_printouts.report_maintenance_x</field>
+            <field name="report_file">maintenance_printouts.report_maintenance_x</field>
+           <field name="paperformat_id" ref="maintenance_printouts.lanscape_paperformat"/>
+        </record>
+
+        <template id="report_maintenance_x">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    <div class="container">
+
+                        <t t-call="maintenance_printouts.my_own_layout_header"/>
+
+                        <!-- Report Row Content -->
+                        <div >
+
+                            <table class="table">
+                                
+                                <t t-set="codes" t-value="['A.C', 'B1', 'B2', 'C1', 'C2', 'C3', 'C4', 'C5', 
+                                    'NH3P1', 'NH3P2', 'NH3P3', 'NH3P4','NH3P5', 'NH3P6', 'EV.Cond1', 'EV.Cond2', 'PHE1', 'PHE2',
+                                    'CH.WP1', 'CH.WP2', 'C.R1', 'C.R2', 'C.R3', 'C.R4', 'B.F', 'IQF', 'P.C1', 'P.C2', 'P.C3',
+                                    'P.R1', 'P.R2', 'G', 'V.MFC', 'H.B', 'V.SH', 'F.S', 'M.W.M', 'F.C.B', 'B.C', 'C.A.B',
+                                    'D.SH', 'S.F.C', 'S.C1', 'S.F.C1', 'S.WM1', 'S.WM2', 'F', 'S.C2', 'H.C1', 'H.C2', 'R.A',
+                                    'Ps.A', 'D.A', 'P.A', 'RT.F', 'E.F', 'D.F', 'S1', 'S2', 'S3', 'S4', 'S5', 'C.B.IQF',
+                                    'C.B.FS', 'S.G1', 'S.G2', 'S.L.2', 'O.G.L', 'F.C.S', 'S.1', 'S.2', 'C.S', 'S.M', 'F.C.C.M',
+                                    'C.M', 'C.C.M', 'S.C.M1', 'S.C.M2', 'M.D1', 'M.D2', 'W.P', 'Dryer 1', 'Dryer 2', 'Dryer 3',
+                                    'Dryer 4', 'Sanitation Machine No.1', 'Sanitation Machine No.2', 'Sanitation Machine No.3',
+                                    'Sanitation Gate (Door)', 'Automatic Packaging Machine', ]"/>
+
+                                <t t-set="months" t-value=" ['January', 'February', 'Marche', 'April', 
+                                    'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']"/>
+                                
+                                <t t-set="year" t-value="context_timestamp(datetime.datetime.now()).strftime(' %Y')"/>
+                                <tbody>
+                                    <div class="text-center" style="background-color: #FFEFC1;">
+                                        <h3>Annual maintenance plan <span dir="LTR" t-esc="time.strftime(' %Y')"/></h3>
+                                    </div>
+                                    <tr>
+                                        <th>
+                                            <p>Month</p>
+                                            <p>machine code</p>
+                                        </th>
+                                        <t t-foreach="months" t-as="i">
+                                            <th>
+                                                <p>
+                                                    <t t-out="i"/>
+                                                </p>
+                                            </th>
+                                        </t>
+
+                                    </tr>
+                                    <tr t-foreach="codes" t-as="code">
+                                        <td>
+                                            <strong>
+                                                <p>
+                                                    <t t-out="code"/>
+                                                </p>
+                                            </strong>
+                                        </td>
+                                        <t t-call="maintenance_printouts.my_own_layout_days_calculator"/>
+                                    </tr>
+                                    
+
+                                </tbody>
+                            </table>
+
+                        </div><!-- Report Row Content -->
+
+                    </div><!-- container -->
+                </div><!-- page -->
+            </t>
+        </template>
+
+        <template id="my_own_layout_days_calculator">
+            <!-- Report number of days content -->
+            <td t-foreach="months" t-as="i">
+                <t t-if="i in ['January', 'Marche', 'May', 'July', 'August', 'October', 'December']">
+                    <p>
+                        <span t-foreach="range(31)" t-as="j">
+                            <t t-out="j + 1 "/>
+                        </span>
+                    </p>
+                </t>
+                <t t-elif="i in ['April', 'June', 'September', 'November', ]">
+                    <p>
+                        <span t-foreach="range(30)" t-as="j">
+                            <t t-out="j + 1 "/>
+                        </span>
+                    </p>
+                </t>
+                <t t-else="i = 'February'">
+                    <t t-set="y" t-value="int(year)"/>
+                    <t t-set="Feb_days" t-value="(datetime.datetime(y,3,1) - datetime.datetime(y,2,1)).days"/>
+                    <span t-foreach="range(Feb_days)" t-as="j">
+                        <t t-out="j + 1 "/>
+                    </span>
+                </t>
+            </td>
+        </template>
+
+        <template id="my_own_layout_header">
+            <!-- Report header content -->
+            <div class="page-header">
+                <div >
+                    <h2 dir="RTL"> بستانا للصناعات الغذائية </h2>
+                    <div dir="RTL">
+                        <img src="/maintenance_printouts/static/description/Photo.png" alt="Photo"
+                             width="300" height="100"/>
+                    </div>
+                    <strong><span dir="LTR" t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d ')"/></strong>
+                </div>
+            </div>
+        </template>
+
+    </data>
+
+</odoo>
