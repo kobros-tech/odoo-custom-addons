@@ -1,0 +1,20 @@
+<odoo>
+
+    <!-- Abstract Report App Menu -->
+    <menuitem id="menu_abstract_reports" name="Reports"/>
+
+    <!-- Action to open the abstract report app -->
+    <record id="action_abstract_reports" model="ir.actions.act_window">
+        <field name="name">Abstract Report</field>
+        <field name="res_model">abstract.reports</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <!-- Menu item to open the abstract report app -->
+    <menuitem id="menu_abstract_reports_item"
+        name="Reports" 
+        parent="menu_abstract_reports"
+        action="action_abstract_reports"
+    />
+
+</odoo>

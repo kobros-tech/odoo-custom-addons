@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="aabstract_reports_report_x" model="ir.actions.report">
+        <field name="name">Report Task X </field>
+        <field name="model">abstract.reports</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">abstract_reports.report_task_x</field>
+        <field name="report_file">abstract_reports.report_task_x</field>
+        <field name="print_report_name">"Task- %s" % object.name</field>
+        <field name="binding_model_id" ref="model_abstract_reports"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="abstract_reports.abstract_lanscape_paperformat"/>
+    </record>
+
+</odoo>
