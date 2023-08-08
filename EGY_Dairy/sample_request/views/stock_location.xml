@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_stock_location_sample_request_form_inherit" model="ir.ui.view">
+            <field name="name">stock.location.sample.request.form.inherit</field>
+            <field name="model">stock.location</field>
+            <field name="inherit_id" ref="stock.view_location_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='return_location']" position="after">
+                    <field name="location_type"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

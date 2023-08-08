@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_set_sample_request_rejection_reason_wizard" model="ir.ui.view">
+            <field name="name">set.sample.request.rejection.reason.wizard</field>
+            <field name="model">sample.request.rejection.reason</field>
+            <field name="arch" type="xml">
+                <form string="Rejection Reason">
+                    <group class="oe_title">
+                        <field name="reject_reason"/>
+                    </group>
+                    <footer>
+                        <button name="action_set_reject_reason" type="object" string="Confirm" class="btn-secondary"/>
+                        <button string="Cancel" special="cancel" class="btn-primary"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

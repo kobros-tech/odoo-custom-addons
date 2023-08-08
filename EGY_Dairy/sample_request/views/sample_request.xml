@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_sample_request_form" model="ir.ui.view">
+            <field name="name">sample.request.form</field>
+            <field name="model">sample.request</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <form>
+                    
+                    <header>
+                        <field name="state" widget="statusbar"/>
+                        <button name="action_confirm" string="Confirm" type="object" class="oe_highlight"
+                                states="r&amp;d" groups="sample_request.group_rd_approval"/>
+                        <button name="action_send_to_sm" string="Send to S.M" type="object" class="oe_highlight"
+                                states="sales_persons"/>
+                        <button name="action_sm_approve" string="Approve" type="object" class="oe_highlight"
+                                states="sales_manger" groups="sales_enhancement.group_sales_manger_approval"/>
+                        <button name="btn_reject" string="Reject" type="object"
+                                class="oe_highlight"
+                                attrs="{'invisible': [('state', 'in', ('confirmed','rejected'))]}"
+                                groups="sample_request.group_reject_sample_request"/>
+                    </header>
+                    
+                    
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_open_invoice" type="object" class="oe_stat_button"
+                                    icon="fa-pencil-square-o" attrs="{'invisible': [('show_invoice', '=', False)]}">
+                                <div class="o_stat_info">
+                                    <span class="o_stat_text">
+                                        Invoice
+                                    </span>
+                                </div>
+                            </button>
+                            <button name="action_open_picking" type="object" class="oe_stat_button"
+                                    icon="fa-truck" states="confirmed">
+                                <div class="o_stat_info">
+                                    <span class="o_stat_text">
+                                        Delivery Order
+                                    </span>
+                                </div>
+                            </button>
+                        </div>
+                        
+                        <div class="oe_title oe_inline">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        
+                        <group>
+                            <group>
+                                <field name="partner_id"/>
+                                <field name="validity_date"/>
+                                <field name="request_date"/>
+                                <field name="order_date"/>
+                                <field name="payment_status"/>
+                                <field name="reject_reason" attrs="{'invisible': [('state', '!=', 'rejected')]}"/>
+                                <field name="show_invoice" invisible="1"/>
+                            </group>
+                            
+                            <group>
+                                <field name="sample_wh"
+                                       attrs="{'invisible': [('state', 'not in', ['r&amp;d','confirmed'])], 'required': [('state', '=', 'r&amp;d')]}"/>
+                                <field name="wh_source_ids"
+                                       attrs="{'invisible': ['|', ('state', 'not in', ['r&amp;d','confirmed']), ('sample_wh', '=', False)]}"/>
+                            </group>
+                            
+                        </group>
+                        
+                        <notebook>
+                            <page string="Request Lines" name="request_line_ids">
+                                <field name="request_line_ids" mode="tree">
+                                    <tree editable="bottom">
+                                        <field name="product_uom_category_id" invisible="1"/>
+                                        <field name="product_id"/>
+                                        <field name="description"/>
+                                        <field name="product_category"/>
+                                        <field name="quantity"/>
+                                        <field name="product_uom"/>
+                                        <field name="unit_price"/>
+                                        <field name="price_subtotal"/>
+                                    </tree>
+                                </field>
+                            </page>
+                             <page string="Other info" name="other_info">
+                                <group>
+                                    <field name="represent_user_id" readonly="1"/>
+                                </group>
+                                <group>
+                                    <field name="team_id" readonly="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+                        
+                    </sheet>
+                    
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_sample_request_tree" model="ir.ui.view">
+            <field name="name">sample.request.tree</field>
+            <field name="model">sample.request</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="validity_date"/>
+                    <field name="request_date"/>
+                    <field name="order_date"/>
+                    <field name="state" string="SR Status"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="sample_request_search" model="ir.ui.view">
+            <field name="name">sample.request.search</field>
+            <field name="model">sample.request</field>
+            <field name="arch" type="xml">
+                <search string="Sample Request">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="validity_date"/>
+                    <field name="request_date"/>
+                    <field name="order_date"/>
+                    <field name="state" string="SR Status"/>
+                    <field name="payment_status"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Payment Status" name="payment_status" 
+                            domain="[]" context="{'group_by':'payment_status'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="sample_request_form_action">
+            <field name="name">Sample Request</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sample.request</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new Sample Request
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="home_menu_sample_request_act"
+                  sequence="10"
+                  action="sample_request_form_action"/>
+
+    </data>
+</odoo>

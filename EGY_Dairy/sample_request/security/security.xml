@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="group_rd_approval" model="res.groups">
+            <field name="name">R&amp;D Approval</field>
+            <field name="comment">
+                Approve/Reject Sample Request
+            </field>
+        </record>
+        <record id="group_reject_sample_request" model="res.groups">
+            <field name="name">Reject Sample Request</field>
+            <field name="comment">
+                Approve/Reject Sample Request
+            </field>
+        </record>
+        <record id="group_planning_approval" model="res.groups">
+            <field name="name">Planning</field>
+            <field name="comment">
+                Approve/Reject Sample Request,
+                Approve/Reject Return Order
+            </field>
+        </record>
+    </data>
+</odoo>
