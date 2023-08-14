@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mass_editing_v14,MassEditingManager,mass_editing_v14.model_mass_object,mass_editing_v14_group_manager,1,1,1,1
+access_mass_editing_wizard,mass.editing.wizard,model_mass_editing_wizard,,1,1,1,1
