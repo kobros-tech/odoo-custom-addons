@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+
+        <template id="report_task_x">
+            <t t-call="web.basic_layout">
+
+                <div class="page">
+                    <div class="container" style="width: 181mm; height: 88mm; border-style: solid; border-width: 1px;">
+                        
+                        <div class="row" style="margin-top: 10mm;">
+                            <div class="col-3" >
+                                <img style="width: 30mm; height: 10mm; " 
+                                    src="/abstract_reports/static/description/bank_logo.png" alt="Photo"/>
+                                <div>
+                                    <p style="color: #001C3E; font-size: 8px; margin-bottom: -1mm;"><strong>البنك المصري لتنمية الصادرات</strong></p>
+                                    <p style="color: #001C3E; font-size: 7px;"><strong>Export Development Bank of Egypt</strong></p>
+                                </div>
+                            </div>
+                            <div class="col-2" style="font-size: 12px;">
+                                <div class="col">
+                                    <p style="margin-bottom: -1mm;" class="text-right">رقم الشيك</p>
+                                </div>
+                                <div class="col">
+                                    <p class="text-right">Cheque No.</p>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <p class="text-center" style="background-color: black; color: white;">47655615</p>
+                            </div>
+                            <div class="col-1">
+                            </div>
+                            <div class="col-2" style="font-size: 12px;">
+                                <p>Date</p>
+                                <hr style="width: 58mm;"></hr>
+                            </div>
+                            <div class="col-2" style="font-size: 12px;">
+                                <p class="text-right" dir="RTL" >التاريخ</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6" style="font-size: 12px;">
+                                <br/>
+                                <p style="margin-bottom: -4mm;">Pay This Cheque To</p>
+                                <hr style="width: 174mm;"></hr>
+                            </div>
+                            <div class="col-6" style="font-size: 12px;">
+                                <br/>
+                                <p class="text-right" dir="RTL" >ادفعو بموجب هذا الشيك إلى</p>
+                            </div>
+                        </div>
+    
+                        <div class="row">
+                            <div class="col-6" style="font-size: 12px;">
+                                <p>To Or Order Of</p>
+                            </div>
+                            <div class="col-6">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6" style="font-size: 12px; margin-top: 2mm;">
+                                <p style="margin-top: -2mm;">The Sum Of</p>
+                                <hr style="width: 126mm;"></hr>
+                            </div>
+                            <div class="col-3" style="font-size: 12px; margin-top: 2mm;">
+                                <p class="text-right" dir="RTL"><span class="m-1"></span>مبلغ و قدره</p>
+                            </div>
+                            <div class="col-3" style="font-size: 8px;">
+                                <table class="table table-bordered border-dark" style="width: auto;">
+                                    <tbody>
+                                        <tr class="border-white border-bottom-0">
+                                            <th width="10%">Currency</th>
+                                            <th>Amount</th>
+                                            <th dir="RTL">المبلغ</th>
+                                        </tr>
+                                        <tr style="height: 11mm;">
+                                            <td></td>
+                                            <td colspan="2"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col" style="margin-bottom: 2mm;">
+                                <hr style="width: 126mm;"></hr>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4" style="font-size: 12px;">
+                                <p><strong>BOSTANA FOR FOOD INDUSTRIES</strong></p>
+                            </div>
+                            <div class="col-2" style="font-size: 12px;">
+                            </div>
+                            <div class="col-2" style="font-size: 12px;">
+                                <p style="margin-bottom:-4mm;">Signatory</p>
+                                <hr style="width: 86mm;"></hr>
+                            </div>
+                            <div class="col-4" style="font-size: 12px;">
+                                <p class="text-right" dir="RTL">إسم</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                            </div>
+                            <div class="col-2" style="font-size: 12px;">
+                                <p>Name</p>
+                            </div>
+                            <div class="col-4" style="font-size: 12px; margin-bottom: 4mm;">
+                                <p class="text-right" dir="RTL">الموقع</p>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top: -3mm;">
+                            <div class="col-4" style="font-size: 12px;">
+                                <p  style="margin-bottom: -1mm;"><strong>A/C : 2020156355101014 - EGP</strong></p>
+                                <p class="text-left"><strong>فرع السنهوري- م.نصر</strong></p>
+                            </div>
+                            <div class="col-2" style="font-size: 12px;">
+                            </div>
+                            <div class="col-2" style="font-size: 12px;">
+                                <p style="margin-bottom:-4mm;">Signature</p>
+                                <hr style="width: 86mm;"></hr>
+                            </div>
+                            <div class="col-4" style="font-size: 12px;">
+                                <p class="text-right" dir="RTL">توقيع</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-5" style="font-size: 9px;">
+                                <p style="margin-bottom:-4mm;">Please Do Not write Below This line On Both Sides</p>
+                                <hr style="width: 174mm;"></hr>
+                            </div>
+                            <div class="col-2"></div>
+                            <div class="col-5" style="font-size: 9px;">
+                                <p class="text-right" dir="RTL">يرجى عدم الكتابة أو التوقيع أو وضع أختام أسفل هذا الخط على وجهي الشيك</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div><!-- page -->
+
+            </t>
+        </template>
+
+    </data>
+
+</odoo>
