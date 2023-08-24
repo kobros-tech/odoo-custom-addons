@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+
+        <record id="custom_paperformat_cheque" model="report.paperformat">
+            <field name="name">Custom PaperFormat Cheque</field>
+            <field name="format">custom</field>
+            <field name="page_height">174</field>
+            <field name="page_width">84</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">0</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="action_custom_report_cheque" model="ir.actions.report">
+            <field name="name">Cheque</field>
+            <field name="model">account.payment</field>
+            <field name="binding_model_id" ref="account.model_account_payment"/>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">account_check_layout.report_cheque_report</field>
+            <field name="report_file">account_check_layout.report_cheque_report</field>
+            <field name="binding_type">report</field>
+            <field name="binding_view_types">form</field>
+            <field name="paperformat_id" ref="custom_paperformat_cheque"/>
+        </record>
+
+        <template id="report_cheque_report_template">
+            <t t-call="web.basic_layout">
+                <t t-foreach="docs" t-as="doc">
+                    <style>
+                        p{
+                            position: absolute;
+                            font-size: 18px;
+                            text-align: center;
+                            margin: 0 0 10px;
+                            display: block;
+                        }
+                    </style>
+
+
+                    <p style="top: .4cm; left: 15cm; width: 100px; " t-field="doc.date"/>
+                    <p style="top: 2.2cm; left: .1cm; width: 359px;" t-field="doc.partner_id.name"/>
+                    <p style="top: 3.5cm; left: 2.6cm; width: 300px; direction: rtl;" t-esc="doc.total_in_words"/>
+                    <p style="top: 4.3cm; left: 14.26cm; width: 35px; font-size: 15px;" t-esc="doc.currency_id.name"/>
+                    <p style="top: 4.3cm; left: 14.8cm; width: 130px;" t-esc="doc.amount"/>
+                    <!-- currency_id.with_context('ar_001').amount_to_text(doc.amount) -->
+                </t>
+            </t>
+        </template>
+
+        <template id="report_cheque_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="account_check_layout.report_cheque_report_template"/>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>
