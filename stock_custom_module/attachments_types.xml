@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="attachments_types_action" model="ir.actions.act_window">
+        <field name="name">Attach</field>
+        <field name="res_model">attachments.types</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
