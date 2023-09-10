@@ -17,6 +17,8 @@ class AttachmentsTypes(models.Model):
     # Relational
     picking_id = fields.Many2one('stock.picking')
 
+    move_id = fields.Many2one('account.move')
+
 
 class StockPicking(models.Model):
 
@@ -38,3 +40,15 @@ class StockPicking(models.Model):
                 raise ValidationError(
                     "The attachment name is required when the state is done!"
                 )
+
+
+class AccountAccount(models.Model):
+
+    # ---------------------------------------- Private Attributes ---------------------------------
+
+    _inherit = 'account.move'
+
+    # --------------------------------------- Fields Declaration ----------------------------------
+
+    # Relational
+    attachments_types_ids = fields.One2many('attachments.types', 'move_id')

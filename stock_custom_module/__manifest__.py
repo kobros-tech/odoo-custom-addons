@@ -10,10 +10,12 @@
     'summary': 'Create a new model',
     'depends': [
         'stock',
+        'sale',
     ],
     'data': [
         'ir.model.access.csv',
         'attachments_types.xml',
         'stock_picking_views.xml',
+        'view_move_form.xml',
     ],
 }
