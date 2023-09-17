@@ -10,7 +10,6 @@
                 <xpath expr="//field[@name='origin']" position="before">
                     <field name="force_date" attrs="{'readonly': [('state', 'in',['done'])]}"
                            groups="stock_force_date_app.group_stock_force_date"/>
-                    <field name="journal_id"/>
                 </xpath>
             </field>
         </record>
