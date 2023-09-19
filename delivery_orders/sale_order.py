@@ -13,6 +13,17 @@ class StockPicking(models.Model):
 
     # Basic
     reference = fields.Char("Invoice Reference", required=True)
+    
+    # ---------------------------------------- Additional methods ------------------------------------
+    
+    def write(self, vals):
+        for rec in self:
+            for invoice in rec.sale_id.invoice_ids:
+                if "reference" in vals:
+                    super().write(vals)
+                    invoice.write({"reference": rec.reference})
+                    
+        return True
 
 
 class AccountAccount(models.Model):
@@ -23,21 +34,16 @@ class AccountAccount(models.Model):
 
     # --------------------------------------- Fields Declaration ----------------------------------
 
-    # Computed
+    reference = fields.Char(string="Delivery Reference", readonly=True)
 
-    reference = fields.Char(compute="_compute_reference", 
-        string="Delivery Reference", store=True)    
-
-    # ---------------------------------------- Compute methods ------------------------------------
-
-    @api.depends("stock_move_id")
-    def _compute_reference(self):
-        for rec in self:
-            stock_move = self.env["stock.move"].browse(rec.stock_move_id)
-            print("****************************************************")
-            print(stock_move)
-            if stock_move.mapped('id') > []:
-                transfer = self.env["stock.picking"].browse(stock_move.picking_id)
-                rec.reference = transfer.reference
-                print("****************************************************")
-                print(transfer)
+    # ---------------------------------------- Additional methods ------------------------------------
+  
+    def write(self, vals):
+        if "reference" in vals:
+            source_orders = self.line_ids.sale_line_ids.order_id
+            for picking in source_orders.picking_ids:
+                if picking.reference != self.reference:
+                    vals["reference"] = picking.reference
+        
+        super().write(vals)    
+        return True
