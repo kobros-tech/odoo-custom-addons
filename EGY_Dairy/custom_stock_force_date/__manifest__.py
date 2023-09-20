@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Force date in Stock Transfer and Inventory Adjustment',
+    'name': 'Custom Force date in Stock Transfer and Inventory Adjustment',
     "author": "Edge Technologies",
     'version': '15',
     'live_test_url': "https://youtu.be/dPuODkkjbDA",
@@ -16,14 +16,6 @@
     "license": "OPL-1",
     'depends': ['stock_force_date_app'],
     'data': [
-        # 'security/stock_force_security.xml',
-        # 'security/ir.model.access.csv',
-
         'views/stock_picking_view.xml',
     ],
-    'installable': True,
-    'auto_install': False,
-    'price': 20,
-    'currency': "EUR",
-    'category': 'Warehouse',
 }

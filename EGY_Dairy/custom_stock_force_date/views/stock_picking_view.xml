@@ -7,6 +7,9 @@
             <field name="model">stock.picking</field>
             <field name="inherit_id" ref="stock.view_picking_form"/>
             <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button name="action_force" type="object" string="Force Journals Dates"/>
+                </xpath>
                 <xpath expr="//field[@name='origin']" position="before">
                     <field name="journal_id"/>
                 </xpath>

@@ -12,26 +12,37 @@ class StockPicking(models.Model):
 
     journal_id = fields.Many2one('account.move', string="Journal Entery")
     move_id = fields.Many2one('account.move.line', string="Journal Item")
+
+    # ------------------------------------------ CRUD Methods -------------------------------------
+
+    def write(self, vals):
+        if "force_date" in vals:
+            for rec in self:
+                super().write(vals)
+
+                journal_enteries = rec.sale_id.invoice_ids
+                
+                # Update Journal Entery and Journal Items per Transfer
+                for journal_entery in journal_enteries:
+                    if journal_entery.date != rec.force_date.date():
+                        journal_entery.write({"date": rec.force_date.date()})
     
-    @api.onchange("force_date")
-    def _onchange_force_date(self):
-        for rec in self:
-            stock_move = self.env["stock.move"].search([('picking_id', '=', rec.id)])
+    # ---------------------------------------- Action Methods -------------------------------------
+
+    def action_force(self):
+        
+        transfers = self.env["stock.picking"].search([("force_date", "!=", None)])
+        
+        # Updating all Journal Enteries and as a consequence Journal Items
+        # for all Transfers that have force_dates
+        for transfer in transfers:
             
-            if stock_move.mapped('id') > []:
-                account_moves = self.env["account.move"].search([('stock_move_id', '=', stock_move.id)])
+            journal_enteries = transfer.sale_id.invoice_ids
             
-                if account_moves.mapped('id') > []:
-                    for account_move in account_moves:
-                        if rec.force_date and rec.force_date != account_move.date:
-                            new_date = rec.force_date.date().strftime("%Y-%m-%d")
-                            account_move.write({"date": datetime.strptime(new_date, "%Y-%m-%d")})
-            
-                    move_lines = self.env["account.move.line"].search([('move_id', '=', account_move.id)])
+            for journal_entery in journal_enteries:
+                if journal_entery.date != transfer.force_date.date():
+                    journal_entery.write({"date": rec.force_date.date()})
                     
-                    if move_lines.mapped('id') > []:
-                        for move_line in move_lines:
-                            if rec.force_date and rec.force_date != move_line.date:
-                                new_date = rec.force_date.date().strftime("%Y-%m-%d")
-                                move_line.write({"date": datetime.strptime(new_date, "%Y-%m-%d")})
-                                
+        return True
+    
+    
