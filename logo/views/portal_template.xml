@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+
+    <!-- product_template_only_website_form_view -->
+
+    <!-- product_product_normal_website_form_view -->
+    <!-- product_product_view_form_easy_inherit_website_sale -->
+
+    <!-- product_template_form_view -->
+    <!-- product_template_form_view -->
+
+    <template id="portal_my_home" inherit_id="portal.portal_my_home">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="before">
+            <h3><a href="/my/home">My Home</a></h3>
+        </xpath>
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Products</t>
+                <t t-set="url" t-value="'/my/products'" />
+                <t t-set="placeholder_count" t-value="'products_count'" />
+            </t>
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Buy a Product</t>
+                <t t-set="url" t-value="'/buy/product'" />
+            </t>
+        </xpath>
+    </template>
+
+    <!-- kobros -->
+    <template id="products_greeting" inherit_id="website_sale.products_item" name="Product Greeting">
+        <xpath expr="//*[hasclass('o_wsale_products_item_title')]" position="after">
+            <div class="oe_structure">
+                <div class="container">
+                    <p>kobros</p>
+                    <div t-field="product.image_1920" contenteditable="true">
+                        <img src="{{product.image_1920}}"/>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- kobros -->
+    <!-- <template id="product_logo_insert" inherit_id="website_sale.product" name="Uploading Logo">
+      <xpath expr="//div[@id='o_wsale_cta_wrapper']" position="before" priority="19">
+        <div>
+          <form action="" method="post" enctype="">
+            <div class="form-group">
+              <h3 class="css_editable_mode_hidden">Insert Logo</h3>
+              <input type="file" name="image"/>
+            </div>
+            <input class="btn btn-primary" type="submit" value="Submit"/>
+          </form>
+        </div>
+        <br/>
+        <button class="o_Composer_button o_Composer_buttonAttachment o_Composer_toolButton btn btn-light fa fa-paperclip border-0 rounded-pill mx-1" title="Add attachment" aria-label="Add attachment" type="button">
+          <input type="file" name="image"/>
+        </button>
+        <div class="o_Composer_actionButtons mt-2"><button class="o_Composer_actionButton o_Composer_button o_Composer_buttonSend btn btn-primary o-last o-has-current-partner-avatar" type="button" disabled="">Log</button></div>
+      </xpath>
+    </template> -->
+
+    <!-- kobros -->
+    <template id="product_logo_inserting" inherit_id="website_sale.product" name="Uploading Logo">
+        <xpath expr="//div[@id='o_product_terms_and_share']" position="before" >
+            <div>
+                <form action="" method="post" enctype="">
+                    <div class="form-group">
+                        <h3 class="css_editable_mode_hidden">Insert Logo</h3>
+                        <input type="file" name="image"/>
+                    </div>
+                    <input class="btn btn-primary" type="submit" value="Submit"/>
+                </form>
+            </div>
+            <br/>
+        <!-- <button class="o_Composer_button o_Composer_buttonAttachment o_Composer_toolButton btn btn-light fa fa-paperclip border-0 rounded-pill mx-1" title="Add attachment" aria-label="Add attachment" type="button">
+          <input type="file" name="image"/>
+        </button>
+        <div class="o_Composer_actionButtons mt-2"><button class="o_Composer_actionButton o_Composer_button o_Composer_buttonSend btn btn-primary o-last o-has-current-partner-avatar" type="button" disabled="">Log</button></div> -->
+      </xpath>
+    </template>
+
+    <!-- List View Template for Products -->
+    <template id="wb_products_list_view_portal">
+        <t t-call="portal.portal_layout">
+            <t t-call="portal.portal_table">
+                <thead>
+                    <tr>
+                        <th class="text-center">Product Name</th>
+                        <th class="text-center">Place of Print</th>
+                        <th class="text-center">Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="products" t-as="product">
+                        <tr>
+                            <td class="text-center">
+                                <a t-attf-href="/my/product/#{product.id}">
+                                    <t t-out="product.display_name"/>
+                                </a>                                
+                            </td>
+                            <td class="text-center">
+                                <t t-out="product.product_template_attribute_value_ids.name"/>
+                            </td>
+                            <td class="text-center">
+                                <img t-attf-src="data:image/png;base64,{{product.image_1920}}" alt="Responsive image" class="rounded-circle img-fluid" style="width:75%; height=75%;"/>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </t>
+        </t>
+    </template>
+
+    <!-- Put a Title to the List View -->
+
+    <template id="portal_products_breadcrumbs" inherit_id="portal.portal_breadcrumbs">
+        <xpath expr="//ol" position="inside">
+            <li t-if="page_name == 'products_list_view'" class="breadcrumb-item"><a href="products">Products</a></li>
+            <li t-if="page_name == 'product_form_view'" class="breadcrumb-item"><a href="../products">Products</a> / Product View</li>
+        </xpath>
+    </template>
+
+    <!-- Product Form View Template -->
+
+    <template id="product_form_view_template" inherit_id="portal.portal_sidebar">
+        <xpath expr="//div[hasclass('o_portal_sidebar')]" position="inside">
+            <div class="row mt16">
+                <p t-out="product.name"/>
+                <p t-out="product.product_template_attribute_value_ids.color"/>
+                <p t-out="product.product_template_attribute_value_ids.name"/>
+                <div>
+                    <img t-attf-src="data:image/png;base64,{{product.image_1920}}" alt="avatar" class="img-fluid img-thumbnail rounded" style="width:100% height:100%"/>
+                </div>
+            </div>            
+        </xpath>
+    </template>
+
+    <!-- New quotation form template -->
+
+    <template id="quotaion_form_view_template" >
+        <t t-call="portal.portal_layout">
+            <!-- <t t-call="portal.portal_table"> -->
+        <div class="row">
+            <h1>New Sales Quotation</h1>
+            <form method="post" enctype="multipart/form-data" data-force_action="product.product" data-model_name="product.product">
+                <!-- CSRF Token -->
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"
+                    enctype="multipart/form-data" />
+                
+                <div class="form-group">
+                    <!-- loop through all product.template records -->
+                    choose template:
+                    <select name="template" id="template">
+                        <option>select</option>
+                        <t t-foreach="templates" t-as="template">
+                            <option t-att-value="template.id" >
+                                <t t-out="template.display_name" name="template" id="template" class="form-control col-sm-4" />
+                                <t t-set="template_value" t-value="template.display_name" />
+                            </option>
+                        </t>
+                    </select>
+                    
+                </div>
+
+                
+                <h1 t-if="template_value != None"><t t-out="template_value"/></h1>
+                
+                <!-- Loop through product.product objects -->
+                <div class="form-group">
+                    Choose product:
+                    <select name="product" id="product">
+                        <option>select</option>
+                        <t t-foreach="products" t-as="product">
+                            <option t-att-value="product.id" id="ddlViewBy">
+                                <t t-out="product.display_name" class="form-control"/>
+                            </option>
+                            
+                        </t>
+                    </select>
+                </div>
+                <h1 t-if="product_value != None"><t t-out="product_value"/></h1>
+                <div class="form-group">
+                    <ul name="attribute" id="attribute">
+                        <t t-foreach="attributes" t-as="attribute">
+                            <li>
+                                <t t-out="attribute.name"/>
+                                <select name="variable" id="variable">
+                                    <option>select</option>
+                                    <t t-foreach="variables" t-as="variable" >
+                                        <option t-att-value="variable.id" >
+                                            <t t-out="variable.name"/>
+                                        </option>
+                                    </t>
+                                </select>
+                            </li>
+                        </t>
+                    </ul>
+                </div>
+                <!-- t-if="attribute.id == template.attribute_id" -->
+                <div class="form-group">
+                    <label class="col-sm-2 col-form-label" for="logo">Logo Submit:</label>
+                    <input type="char" name="logo" id="logo" /><br/>
+                    <h3 class="css_editable_mode_hidden">Insert Logo</h3>
+                        
+                </div>
+                <!-- Imported file upload -->
+                <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom" data-type="binary" data-name="Field">
+                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                        <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="sale3">
+                            <span class="s_website_form_label_content">Upload a document</span>
+                        </label>
+                        <div class="col-sm">
+                            <input id="sale3" type="file" class="form-control s_website_form_input" name="a_document" />
+                        </div>
+                    </div>
+                </div>
+                <!-- Imported button upload -->
+                <div class="mb-0 py-2 col-12 s_website_form_submit s_website_form_no_submit_options">
+                    <div style="width: 200px;" class="s_website_form_label"/>
+                    <span id="s_website_form_result"></span>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">Create Quotation</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        </t>
+
+        <!-- Javascript code -->
+        <t t-set="foo" t-value="42"/>
+        <t t-js="ctx">
+            console.log("Foo is", ctx.foo);
+        </t>
+        <t t-js="ctx">
+            var e = document.getElementById("ddlViewBy");
+            var value = e.value;
+            console.log("Product chosen value is: ", var);
+        </t>
+
+    </template>
+
+    <!-- submit logo in cart template -->
+    <template id="submit_logo_in_cart" inherit_id="website_sale.cart_lines">
+        <xpath expr="//table[@id='cart_products']//thead//tr//th" position="before">
+            <th class="td-img">
+                Logo
+            </th>
+        </xpath>
+        <xpath expr="//table[@id='cart_products']//tbody//tr//td" position="before">
+            <td>
+
+                <form action="/logo/form/" method="post" enctype="multipart/form-data" data-force_action="sale.order" data-model_name="sale.order">
+                    
+                    <!-- CSRF Token -->
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"
+                    enctype="multipart/form-data" />
+
+                    <input type="hidden" name="order_logo" t-att-value="line" />
+                    <input type="hidden" name="product_logo" t-att-value="line.product_id" />
+                    
+                    <t t-set="description" t-value="line.get_description_following_lines()"/>
+                    
+                    <input type="hidden" name="describ_logo" t-att-value="description" /> 
+                        
+                    <input id="sale3" type="file" class="form-control col-xs-2 s_website_form_input" name="a_document" />
+                    <button type="submit" class="btn btn-primary">submit</button>
+                    
+                </form>
+            </td>
+            
+        </xpath>
+    </template>
+
+</odoo>

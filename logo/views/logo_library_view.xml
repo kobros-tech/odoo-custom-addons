@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="logo_library_view_tree" model="ir.ui.view">
+        <field name="name">logo.library.tree</field>
+        <field name="model">library</field>
+        <field name="arch" type="xml">
+            <tree string="Logos" >
+                <field name="name"/>
+                <field name="image" widget="image"/>
+                <field name="product_description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="logo_library_view_search" model="ir.ui.view">
+        <field name="name">logo.search</field>
+        <field name="model">library</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="product_description"/>
+                <!-- <field name="order_ids"/>
+                <field name="product_ids"/> -->
+                
+                <!-- <filter string="Available" name="available" domain="[('name', '!=', '']"/> -->
+                <group expand="1" string="Group By">
+                    <filter string="Order Quotation" name='order_ids' context="{'group_by':'order_ids'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+</odoo>
