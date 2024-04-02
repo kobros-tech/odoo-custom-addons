@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <data>
+
+    <record id="category_sale_order_form_view01" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <!-- PBS Old -->
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="title"/>
+            </xpath>
+<!--            <xpath expr="//field[@name='validity_date']" position="attributes">-->
+<!--                  <attribute name="required">1</attribute>-->
+<!--            </xpath>-->
+            <xpath expr="//field[@name='sale_order_template_id']" position="attributes">
+                  <attribute name="required">0</attribute>
+                  <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//form/sheet/notebook/page/field/tree/field[@name='product_uom']" position="replace">
+                <field name='product_uom' invisible="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/tree/field[@name='tax_id']" position="replace">
+            </xpath>
+
+<!--            <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">-->
+<!--                <button name="action_goto_google" icon="fa-google"-->
+<!--                        type="object"  />-->
+<!--            </xpath>-->
+
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="before">
+              <field name="ob_categ_id" attrs="{'required': [('display_type', 'not in', ['line_section','line_note'])]}" options="{'no_create':true,'no_open':true}" force_save="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="replace">
+
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_template_id']" position="replace">
+
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/tree/field[@name='ob_categ_id']" position="after">
+              <field name="product_template_id" force_save="1"/>
+              <field name="product_id" force_save="1"/>
+            </xpath>
+
+<!--            <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="before">-->
+<!--                <field name="product_template_id"/>-->
+<!--            </xpath>-->
+            <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="after">
+              <field name="startDate" force_save="1"/>
+              <field name="endDate" force_save="1" />
+              <field name="dayes" force_save="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="category_stock_picking_form_view" model="ir.ui.view">
+        <field name="name">stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_id']" position="before">
+              <field name="ob_categ_id" required="1" options="{'no_create':true,'no_open':true}" force_save="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_id']" position="after">
+              <field name="startDate" force_save="1"/>
+              <field name="endDate" force_save="1" />
+              <field name="dayes" force_save="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="category_account_move_form_view" model="ir.ui.view">
+        <field name="name">account.move.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+
+            <!-- PBS Old -->
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="title" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='tax_ids']" position="replace">
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='product_uom_id']" position="replace">
+                <field name='product_uom_id' invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='name']" position="attributes">
+                <attribute name="required">0</attribute>
+                <attribute name="string">Description</attribute>
+            </xpath>
+
+            <!-- PBS New -->
+            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='product_id']" position="before">
+              
+              <!-- custom for ob_categ_id as I insert attrs for that field -->
+              <field name="move_type" invisible="1"/>
+              <!-- custom -->
+              
+              <field 
+                name="ob_categ_id" 
+                required="1" 
+                
+                attrs="{'invisible': [('move_type', 'not in', ('entry', 'out_invoice', 'out_refund', 'out_receipt'))]}" 
+                
+                force_save="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='account_id']" position="before">
+              <field name="ob_categ_id" invisible="1" required="1" options="{'no_create':true,'no_open':true}"/>
+            </xpath>
+
+<!--            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='name']" position="before">-->
+<!--                <field name="product_template_id"/>-->
+<!--            </xpath>-->
+
+            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='name']" position="after">
+              <field name="startDate" force_save="1"/>
+              <field name="endDate" force_save="1"/>
+              <field name="dayes" force_save="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='name']" position="after">
+              <field name="startDate"/>
+              <field name="endDate"/>
+              <field name="dayes"/>
+            </xpath>
+        </field>
+    </record>
+
+
+  </data>
+</odoo>

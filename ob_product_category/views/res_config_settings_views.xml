@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="res_config_settings_view_form_invoice" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.purchase.pbs_sales_custom</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='use_invoice_terms']" position="replace">
+                     <div class="col-12 col-lg-6 o_setting_box" id="use_invoice_terms">
+                                <div class="o_setting_left_pane">
+                                    <field name="use_invoice_terms"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="use_invoice_terms"/>
+                                    <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." aria-label="Values set here are company-specific." groups="base.group_multi_company" role="img"/>
+                                    <div class="text-muted">
+                                        Add your terms &amp; conditions at the bottom of Orders And Quotations
+                                    </div>
+                                    <div class="content-group" attrs="{'invisible': [('use_invoice_terms','=',False)]}">
+                                        <div class="mt16">
+                                            <field name="terms_type" class="o_light_label" widget="radio"/>
+                                            <div>
+                                                <field name="invoice_terms"
+                                                       attrs="{'invisible': [('terms_type', '=', 'html')]}"
+                                                       class="oe_account_terms mt-5 w-100"
+                                                       placeholder="Insert your terms &amp; conditions here..."/>
+                                            </div>
+                                            <div class="mt8" attrs="{'invisible': [('terms_type', '!=', 'html')]}">
+                                                <button name="action_update_terms" icon="fa-arrow-right" type="object" string="Update Terms" class="btn-link"/>
+                                            </div>
+                                            <field name="preview_ready" invisible="1"/>
+                                            <div class="mt4 ml-1" attrs="{'invisible': [('preview_ready', '=', False)]}">
+                                                <a class="btn-link" href="/terms" role="button">
+                                                    <i class="fa fa-arrow-right"></i>
+                                                    Preview
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                </xpath>
+                <xpath expr="//div[@id='use_invoice_terms']" position="after">
+                    <div class="col-12 col-lg-6 o_setting_box" id="use_invoice_terms_invoice">
+                        <div class="o_setting_left_pane">
+                            <field name="use_invoice_terms_invoice"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="use_invoice_terms_invoice"/>
+                            <span class="fa fa-lg fa-building-o" title="Values set here are company-specific."
+                                  aria-label="Values set here are company-specific." groups="base.group_multi_company"
+                                  role="img"/>
+                            <div class="text-muted">
+                                Add your terms &amp; conditions at the bottom of invoice
+                            </div>
+                            <div class="content-group" attrs="{'invisible': [('use_invoice_terms_invoice','=',False)]}">
+                                <div class="mt16">
+                                    <field name="terms_type_invoice" class="o_light_label" widget="radio"/>
+                                    <div>
+                                        <field name="invoice_terms_only"
+                                               attrs="{'invisible': [('terms_type_invoice', '=', 'html')]}"
+                                               class="oe_account_terms mt-5 w-100"
+                                               placeholder="Insert your terms &amp; conditions here..."/>
+                                    </div>
+                                </div>
+                                <div class="mt8" attrs="{'invisible': [('terms_type_invoice', '!=', 'html')]}">
+                                    <button name="action_update_terms" icon="fa-arrow-right" type="object"
+                                            string="Update Terms" class="btn-link"/>
+                                </div>
+                                <field name="preview_ready" invisible="1"/>
+                                <div class="mt4 ml-1" attrs="{'invisible': [('preview_ready', '=', False)]}">
+                                    <a class="btn-link" href="/terms" role="button">
+                                        <i class="fa fa-arrow-right"></i>
+                                        Preview
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="pbs_sales_custom_config_settings_action" model="ir.actions.act_window">
+            <field name="name">Settings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'pbs_sales_custom', 'bin_size': False}</field>
+        </record>
+
+    </data>
+</odoo>

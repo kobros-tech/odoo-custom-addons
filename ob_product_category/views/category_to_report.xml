@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="grid_report_saleorder_addCategory_inherit" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//table[hasclass('o_main_table')]//thead//tr//th[@name='th_description']" position="before">
+            <th name="th_category" class="text-left">Category</th>
+        </xpath>
+
+        <xpath expr="//table[hasclass('o_main_table')]//thead//tr//th[@name='th_taxes']" position="replace">
+            <th name="th_duration" class="text-center">Duration</th>
+        </xpath>
+
+        <xpath expr="//table[hasclass('o_main_table')]//tbody//tr//td[@name='td_name']" position="before">
+            <td name="td_category" class="text-left">
+                <span t-field="line.ob_categ_id"/>
+            </td>
+        </xpath>
+
+        <xpath expr="//table[hasclass('o_main_table')]//tbody//tr//td[@name='td_taxes']" position="replace">
+            <td name="td_duration" class="text-center">
+                <span t-field="line.dayes"/>
+            </td>
+        </xpath>
+
+        <xpath expr="//table[hasclass('o_main_table')]//tbody//tr//td[3]/span[2]" position="replace">
+            <span>
+
+            </span>
+        </xpath>
+
+    </template>
+
+    <template id="grid_report_invoicing_addCategory_inherit" inherit_id="account.report_invoice_document">
+        <xpath expr="//table[hasclass('o_main_table')]//thead//tr//th[@name='th_description']" position="before">
+            <th name="th_category" class="text-left">Category</th>
+        </xpath>
+
+        <xpath expr="//table[hasclass('o_main_table')]//thead//tr//th[@name='th_taxes']" position="replace">
+            <th name="th_duration" class="text-center">Duration</th>
+        </xpath>
+
+        <xpath expr="//table[hasclass('o_main_table')]//thead//tr//th[@name='th_duration']" position="after">
+            <th name="th_duration" class="text-center"></th>
+        </xpath>
+
+        <xpath expr="//table[hasclass('o_main_table')]//tbody//tr//td[@name='account_invoice_line_name']" position="before">
+            <td name="td_category" class="text-left">
+                <span t-field="line.ob_categ_id"/>
+            </td>
+        </xpath>
+
+        <xpath expr="//table[hasclass('o_main_table')]//tbody//tr//td[3]/span[2]" position="replace">
+            <sapn>
+
+            </sapn>
+        </xpath>
+
+        <xpath expr="//table[hasclass('o_main_table')]//tbody//tr//td[5]" position="replace">
+            <td class="text-center">
+                <span t-field="line.dayes"/>
+            </td>
+        </xpath>
+
+
+    </template>
+
+    <template id="changeTotalColor_inherit" inherit_id="account.document_tax_totals">
+        <xpath expr="//tr[hasclass('o_total')]" position="replace">
+            <tr class="border-black o_total" style="color: #FFF; padding: 15px; background-color: #c92b2b;">
+                <td><strong style="color: #FFF; background-color: #c92b2b;">Total</strong></td>
+                <td class="text-right">
+                    <span t-esc="tax_totals['formatted_amount_total']"/>
+                </td>
+            </tr>
+        </xpath>
+    </template>
+
+
+</odoo>
