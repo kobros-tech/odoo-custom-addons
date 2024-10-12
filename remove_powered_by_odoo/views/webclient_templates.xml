@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="custom_web_layout" name="Custom Web Layout" inherit_id="web.layout">
+        <xpath expr="//head/title" position="replace">
+            <title t-esc="title or 'Amd Megastore'"/>
+        </xpath>
+
+        <xpath expr="//link[@rel='shortcut icon']" position="before">
+	    	<t 
+		    	t-set="x_icon" 
+		    	t-value="x_icon or '/web/image/res.company/%s/favicon' % request.env.company.id"
+	    	/>
+	    </xpath>
+    </template>
+
+    <template id="custom_web_layout" name="Custom Web Layout" inherit_id="web.login_layout">
+        <xpath expr="//div[@t-if='not disable_footer']" position="replace">
+            <div class="text-center small mt-4 pt-3 border-top" t-if="not disable_footer">
+                <t t-if="not disable_database_manager">
+                    <a class="border-end pe-2 me-1" href="/web/database/manager">Manage Databases</a>
+                </t>
+                <!-- <a href="https://www.odoo.com?utm_source=db&amp;utm_medium=auth" target="_blank">Powered by <span>Odoo</span></a> -->
+            </div>
+        </xpath>
+    </template>
+
+    <template id="custom_portal_layout" name="Custom Web Layout" inherit_id="web.brand_promotion">
+        <xpath expr="//div" position="replace">
+            <div class="o_brand_promotion"></div>
+        </xpath>
+    </template>
+</odoo>

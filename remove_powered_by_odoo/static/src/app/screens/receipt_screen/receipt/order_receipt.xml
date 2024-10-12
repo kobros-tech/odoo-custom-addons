@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('pos-receipt-order-data')]/p[text()='Powered by Odoo']" position="attributes">
+            <attribute name="class">invisible</attribute>
+        </xpath>
+
+        <!-- <xpath expr="//div[hasclass('pos-receipt-order-data')]/p[text()='Powered by Odoo']" position="replace">
+            <p><t t-esc="env.services.pos.config.name"/></p>
+        </xpath> -->
+    </t>
+</templates>

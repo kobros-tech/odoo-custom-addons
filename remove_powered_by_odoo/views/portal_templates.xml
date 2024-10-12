@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="custom_portal_2_layout" inherit_id="portal.portal_record_sidebar">
+        <xpath expr="//div" position="replace">
+            <div t-attf-class="#{classes}">
+                <div class="o_portal_sidebar_content d-lg-inline-block mb-4 mb-lg-0 p-3 p-lg-0" id="sidebar_content">
+                    <div t-if="title" class="position-relative d-flex align-items-center justify-content-md-center justify-content-lg-between flex-wrap gap-2">
+                        <t t-out="title"/>
+                    </div>
+                    <t t-if="entries" t-out="entries"/>
+                    <div class="d-none d-lg-block mt-5 small text-center text-muted">
+                        <!-- Powered by <a target="_blank" href="http://www.odoo.com?utm_source=db&amp;utm_medium=portal" title="odoo"><img src="/web/static/img/logo.png" alt="Odoo Logo" height="15"/></a> -->
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

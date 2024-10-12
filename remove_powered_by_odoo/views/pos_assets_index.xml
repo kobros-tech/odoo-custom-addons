@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="custom_pos_layout" inherit_id="point_of_sale.index">
+        <xpath expr="//head/title" position="replace">
+            <title>Amd Megastore</title>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="custom_mail_layout" inherit_id="mail.discuss_public_channel_template">
+        <xpath expr="//head/title" position="replace">
+            <title t-esc="title or 'Amd Megastore'"/>
+        </xpath>
+
+        <xpath expr="//link[@rel='shortcut icon']" position="before">
+	    	<t 
+		    	t-set="x_icon" 
+		    	t-value="x_icon or '/web/image/res.company/%s/favicon' % request.env.company.id"
+	    	/>
+	    </xpath>
+    </template>
+</odoo>
