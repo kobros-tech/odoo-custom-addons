@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="hello" name="Hello World">
+        <t t-call="web.frontend_layout">
+            <h2>
+                Hello, 
+                <span><t t-esc="name"/>...</span>
+            </h2>
+        </t>
+    </template>
+
+</odoo>

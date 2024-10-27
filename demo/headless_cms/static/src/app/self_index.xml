@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="headless_cms.selfIndex">
+        <div class="row">
+            <div class="col-4">
+                <button class="btn btn-secondary" t-on-click="fooName">Click to Foo</button>
+            </div>
+            <div class="col-4">
+                <p>We're currently closed.
+                    <span t-if="state.name"><t t-esc="state.name"/></span>
+                </p>
+            </div>
+            <div class="col-4">
+                <div>
+                    <button class="btn btn-secondary" t-on-click="json_calls_get">Connect with Custom GET API</button>
+                </div>
+                <br/>
+                <div>
+                    <button class="btn btn-secondary" t-on-click="json_calls_post">Connect with Custom POST API</button>
+                </div>
+                <br/>
+                <div>
+                    <button class="btn btn-secondary" t-on-click="json_calls_login">Connect with Login API</button>
+                </div>
+                <br/>
+            </div>
+        </div>
+
+        <MainComponentsContainer />
+    </t>
+</templates>

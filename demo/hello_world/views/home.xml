@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="home" name="Home">
+        <div class="container">
+            <t t-call="hello_world.layout">
+                <div class="row">
+                    <div class="col-4"></div>
+                    <div class="col-4">
+                        <h2 t-att-data-name="name" id="1">
+                            Hi, 
+                            <span><t t-esc="name"/>...</span>
+                        </h2>
+                    </div>
+                    <div class="col-4"></div>
+                </div>
+            </t>
+        </div>
+    </template>
+
+</odoo>

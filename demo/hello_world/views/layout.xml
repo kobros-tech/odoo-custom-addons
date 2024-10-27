@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="layout" name="Index" inherit_id="web.layout" primary="True">
+
+        <xpath expr="//head/link[last()]" position="after">
+            <link rel="preload" href="/web/static/src/libs/fontawesome/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font" crossorigin=""/>
+            <t t-call-assets="hello_world.assets_frontend" t-js="true"/>
+        </xpath>
+
+    </template>
+
+</odoo>
